@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @active %>
+
+<div>
+  <%= link_to "Edit this active", edit_active_path(@active) %> |
+  <%= link_to "Back to actives", actives_path %>
+
+  <%= button_to "Destroy this active", @active, method: :delete %>
+</div>

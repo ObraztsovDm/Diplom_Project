@@ -1,0 +1,37 @@
+<%= form_with(model: active) do |form| %>
+  <% if active.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(active.errors.count, "error") %> prohibited this active from being saved:</h2>
+
+      <ul>
+        <% active.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :start, style: "display: block" %>
+    <%= form.number_field :start %>
+  </div>
+
+  <div>
+    <%= form.label :end, style: "display: block" %>
+    <%= form.number_field :end %>
+  </div>
+
+  <div>
+    <%= form.label :number_bots, style: "display: block" %>
+    <%= form.number_field :number_bots %>
+  </div>
+
+  <div>
+    <%= form.label :guess_claster, style: "display: block" %>
+    <%= form.number_field :guess_claster %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
