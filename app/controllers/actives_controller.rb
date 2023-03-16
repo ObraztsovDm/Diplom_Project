@@ -26,9 +26,18 @@ class ActivesController < ApplicationController
     end
 
     visual = visual_cluster_data(start, finish, number_bots)
+    real_cluster_middle = (calculation_clusterization(number_bots, visual.dig(:area_cluster_circle)) +
+      calculation_clusterization(number_bots, visual.dig(:area_cluster_square)) +
+      calculation_clusterization(number_bots, visual.dig(:area_cluster_triangle))) / 3.0
 
-    @claster = visual.dig(:visual_result)
-    @real_cluster = visual.dig(:real_cluster)
+
+    @cluster_circle = visual.dig(:visual_result_circle)
+    @cluster_square = visual.dig(:visual_result_square)
+    @cluster_triangle = visual.dig(:visual_result_triangle)
+    @real_cluster_circle = calculation_clusterization(number_bots, visual.dig(:area_cluster_circle))
+    @real_cluster_square = calculation_clusterization(number_bots, visual.dig(:area_cluster_square))
+    @real_cluster_triangle = calculation_clusterization(number_bots, visual.dig(:area_cluster_triangle))
+    @real_cluster_middle = real_cluster_middle.round(5)
     @user_cluster = user_cluster.to_f
   end
 

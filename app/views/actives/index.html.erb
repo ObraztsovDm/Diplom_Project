@@ -3,7 +3,7 @@
 
 <div style="font-family: 'Times New Roman',serif; font-size: 20px">
   <h1>Вхідні
-    дані <%= image_tag 'ruby.jpg', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
+    дані <%= image_tag 'book_one_input_data.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
   </h1>
 
   <hr>
@@ -12,9 +12,10 @@
     <%= form_for :active, url: actives_path do |form| %>
       <div class="alert alert-info">
         Початок часового проміжку:
-        <%= form.number_field :start, in: 0..100, step: 1, :class => "form_control form-control-md", :id => "start"%>
+        <%= form.number_field :start, in: 0..60, step: 1, :class => "form_control form-control-md", :id => "start" %>
         Завершення часового проміжку:
-        <%= form.number_field :end, in: 0..100, step: 1, :class => "form_control form-control-md", :id => "end"%><br><br>
+        <%= form.number_field :end, in: 0..60, step: 1, :class => "form_control form-control-md", :id => "end" %>
+        <br><br>
         Кількість ботів:
         <%= form.number_field :number_bots, in: 1..30, step: 1, :class => "form_control form-control-md" %>
         Ймовірний користувацький рівень кластеризації:
@@ -27,28 +28,47 @@
 
   <hr>
 
-  <!--  <h1>Функція щільності ймовірності
-    розподілу <%#= image_tag 'ruby.jpg', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></h1>
+  <h1>Арени <%= image_tag 'areas.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
+  </h1>
 
   <hr>
 
-  <div class="alert alert-primary">
-    <#%= line_chart [
-                     {
-                       name: "ФШІ", type: 'line', data: @pdf
-                     }
-                   ],
-                   title: "Функція щільності ймовірності",
-                   colors: ['brown'],
-                   xtitle: "x",
-                   ytitle: "P(x)",
-                   download: { background: "#ffffff" }
-    %>
+  <!-- <div style="background: #616BC1"> -->
+  <div class="features-block">
+    <div class="image">
+    <span>
+        <picture>
+          <%= image_tag 'triangle.png', style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
+        </picture>
+        <p>Трикутна арена</p>
+        </span>
+      <span>
+        <picture>
+          <%= image_tag 'square.png', style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
+        </picture>
+        <p>Прямокутна арена</p>
+        </span>
+      <span>
+        <picture>
+          <%= image_tag 'circle.png', style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
+        </picture>
+        <p>Кругла арена</p>
+        </span>
+    </div>
   </div>
 
+  <div style="text-align: center; width: 1920px">
+    <picture>
+      <%= image_tag 'labyrinth.png', width: 80, height: 80, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
+    </picture>
+    <p>Лабіринт</p>
+  </div>
+  <!-- </div> -->
+
   <hr>
-  -->
-  <h1>Моделювання результатів <%= image_tag 'ruby.jpg', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></h1>
+
+  <h1>Моделювання
+    результатів <%= image_tag 'ascil.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></h1>
 
   <hr>
 
@@ -58,82 +78,74 @@
   <div class="alert alert-success">
     <%= column_chart [
                        {
-                         name: "Кількість ботів у кластері", type: 'column', data: @claster
+                         name: "Кількість ботів у кластері (трикутна арена)", type: 'column', data: @cluster_triangle
+                       },
+                       {
+                         name: "Кількість ботів у кластері (прямокутна арена)", type: 'column', data: @cluster_square
+                       },
+                       {
+                         name: "Кількість ботів у кластері (кругла арена)", type: 'column', data: @cluster_circle
                        }
                      ],
                      title: "Кластеризація ботів",
-                     colors: ['green'],
+                     colors: ['green', 'blue', 'purple'],
                      xtitle: "Час",
                      ytitle: "Боти",
                      download: { background: "#ffffff" }
     %>
   </div>
 
-  <!--<hr>
-
-  <h4 style="text-align: center">Використання методу Метрополісу</h4>
+  <h4 style="text-align: center">Результати дослідження лабіринту</h4>
 
   <hr>
   <div class="alert alert-success">
-    <#%= column_chart [
+    <%= column_chart [
                        {
-                         name: "Апроксимація взаємного розподілу", type: 'column', data: @p_k
+                         name: "Кількість ботів у кластері (трикутна арена)", type: 'column', data: @cluster_triangle
                        },
                        {
-                         name: "Перша серія моделювання", type: 'column', data: @series_one_metropolis
+                         name: "Кількість ботів у кластері (прямокутна арена)", type: 'column', data: @cluster_square
                        },
                        {
-                         name: "Друга серія моделювання", type: 'column', data: @series_two_metropolis
+                         name: "Кількість ботів у кластері (кругла арена)", type: 'column', data: @cluster_circle
                        }
                      ],
-                     title: "Статистична перевірка випадкових величин (Метод Метрополісу)",
+                     title: "Результат лабіринту",
                      colors: ['green', 'blue', 'purple'],
-                     xtitle: "x",
-                     ytitle: "p(x)",
+                     xtitle: "Час",
+                     ytitle: "Боти",
                      download: { background: "#ffffff" }
     %>
   </div>
 
   <hr>
 
-  <h4 style="text-align: center">Використання методу зворотної функції</h4>
-
-  <hr>
-  <div class="alert alert-success">
-    <#%= column_chart [
-                       {
-                         name: "Апроксимація взаємного розподілу", type: 'column', data: @p_k
-                       },
-                       {
-                         name: "Перша серія моделювання", type: 'column', data: @series_one_reverse
-                       },
-                       {
-                         name: "Друга серія моделювання", type: 'column', data: @series_two_reverse
-                       }
-                     ],
-                     title: "Статистична перевірка випадкових величин (Метод зворотної функції)",
-                     colors: ['green', 'blue', 'purple'],
-                     xtitle: "x",
-                     ytitle: "p(x)",
-                     download: { background: "#ffffff" }
-    %>
-  </div>
-
-  <hr>
--->
-  <h1>Числові характеристики <%= image_tag 'ruby.jpg', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></h1>
+  <h1>Числові
+    характеристики <%= image_tag 'comp_meteor.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></h1>
 
   <hr>
   <div style="background: #DDDDF5">
     <div style="text-align: center;">
       <table border="1" cellpadding="6" cellspacing="0" align="center">
         <tr>
-          <td><b>Фактичний коефіцієнт кластеризації*</b></td>
-          <td><%= @real_cluster %> %</td>
+          <td>&nbsp;</td>
+          <td style="background: #008000"></td>
+          <td style="background: #0000FF"></td>
+          <td style="background: #800080"></td>
+        </tr>
+        <tr>
+          <td><b>Фактичний коефіцієнт кластеризації кожної арени</b></td>
+          <td><%= @real_cluster_triangle %> %</td>
+          <td><%= @real_cluster_square %> %</td>
+          <td><%= @real_cluster_circle %> %</td>
+        </tr>
+        <tr>
+          <td><b>Середня кластеризація</b></td>
+          <td colspan="3"><%= @real_cluster_middle %> %</td>
         </tr>
         <tr>
           <td><b>Користувацький коефіцієнт кластеризації</b></td>
-          <td><%= @user_cluster %> %</td>
+          <td colspan="3"><%= @user_cluster %> %</td>
         </tr>
       </table>
     </div>

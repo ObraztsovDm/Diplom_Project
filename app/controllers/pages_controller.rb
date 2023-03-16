@@ -3,6 +3,10 @@ class PagesController < ApplicationController
     @heading = 'Сторінка про нас!' # переменная вывода информации
   end
 
+  def videos
+    @heading = 'Сторінка всіх відеоматеріалів!'
+  end
+
   def help
 
   end

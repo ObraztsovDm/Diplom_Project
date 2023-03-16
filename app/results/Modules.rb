@@ -1,5 +1,5 @@
 module ResultsClusterModule
-  def active_cluster
+  def active_cluster_circle
 =begin
     1.step(60, 1) do
       result << rand(1..number_bots)
@@ -9,6 +9,20 @@ module ResultsClusterModule
     {
       5 => [2, 1, 4, 2, 3, 1, 1, 5, 2, 3, 3, 3, 1, 3, 1, 1, 2, 2, 2, 2, 5, 3, 3, 3, 1, 1, 2, 3, 2, 2, 2, 2, 2, 1, 2, 2, 5, 1, 5, 3, 5, 4, 5, 1, 4, 4, 4, 2, 4, 4, 4, 4, 1, 1, 2, 2, 5, 3, 5, 3],
       10 => [3, 5, 7, 5, 9, 9, 3, 2, 9, 2, 2, 1, 7, 5, 2, 8, 9, 10, 1, 5, 10, 6, 8, 4, 1, 9, 9, 8, 6, 10, 7, 4, 3, 1, 3, 7, 4, 6, 4, 9, 4, 5, 1, 7, 10, 5, 7, 9, 3, 3, 1, 7, 2, 2, 8, 5, 10, 10, 9, 8]
+    }
+  end
+
+  def active_cluster_square
+    {
+      5 => [3, 1, 4, 2, 3, 1, 1, 5, 2, 3, 3, 3, 1, 3, 1, 1, 2, 2, 2, 3, 5, 3, 3, 3, 1, 1, 2, 3, 2, 2, 2, 2, 2, 1, 2, 2, 5, 1, 5, 3, 5, 2, 5, 1, 4, 4, 4, 2, 4, 4, 4, 4, 1, 1, 2, 2, 5, 3, 5, 3],
+      10 => [3, 5, 5, 5, 1, 1, 3, 2, 4, 2, 2, 1, 7, 5, 2, 8, 1, 5, 1, 5, 5, 6, 1, 4, 1, 9, 9, 8, 6, 3, 7, 4, 3, 1, 1, 7, 4, 6, 4, 9, 4, 5, 1, 7, 5, 5, 7, 9, 3, 3, 1, 7, 2, 2, 8, 5, 1, 7, 9, 8]
+    }
+  end
+
+  def active_cluster_triangle
+    {
+      5 => [3, 1, 4, 2, 3, 1, 1, 5, 2, 3, 3, 3, 1, 3, 1, 1, 2, 2, 2, 2, 5, 3, 3, 3, 1, 1, 2, 3, 2, 2, 2, 2, 2, 1, 2, 2, 5, 1, 5, 3, 5, 2, 5, 1, 4, 4, 4, 2, 4, 4, 4, 4, 1, 1, 2, 2, 5, 3, 5, 3],
+      10 => [3, 5, 5, 5, 3, 6, 3, 2, 1, 2, 2, 1, 7, 5, 2, 8, 1, 3, 1, 5, 5, 6, 8, 4, 1, 9, 9, 8, 6, 3, 7, 4, 3, 1, 1, 7, 4, 6, 4, 9, 4, 5, 1, 7, 5, 5, 7, 9, 3, 3, 1, 7, 2, 2, 8, 5, 1, 7, 9, 8]
     }
   end
 end
@@ -35,32 +49,55 @@ module VisualizationModule
   include ResultsSeparatedModule
 
   def visual_cluster_data(start, finish, number_bots)
-    cluster = active_cluster
+    cluster_circle = active_cluster_circle
+    cluster_square = active_cluster_square
+    cluster_triangle = active_cluster_triangle
     #separated_bots = active_separated(number_bots)
     step = 1
-    result = []
-    mas_for_clast = []
+    result_circle = []
+    result_square = []
+    result_triangle = []
+    mas_for_clust_circle = []
+    mas_for_clust_square = []
+    mas_for_clust_triangle = []
 
     start.step(finish, step) do |i|
-      mas_for_clast << cluster.dig(number_bots)[i-1]
-      result << ["#{i - 1} - #{((i - 1) + step)}", cluster.dig(number_bots)[i-1]]
+      mas_for_clust_circle << cluster_circle.dig(number_bots)[i-1]
+      mas_for_clust_square << cluster_square.dig(number_bots)[i-1]
+      mas_for_clust_triangle << cluster_triangle.dig(number_bots)[i-1]
+
+      if i == start
+        result_circle << ["#{i} - #{((i) + step)}", cluster_circle.dig(number_bots)[i-1]]
+        result_square << ["#{i} - #{((i) + step)}", cluster_square.dig(number_bots)[i-1]]
+        result_triangle << ["#{i} - #{((i) + step)}", cluster_triangle.dig(number_bots)[i-1]]
+      else
+        result_circle << ["#{i - 1} - #{((i - 1) + step)}", cluster_circle.dig(number_bots)[i-1]]
+        result_square << ["#{i - 1} - #{((i - 1) + step)}", cluster_square.dig(number_bots)[i-1]]
+        result_triangle << ["#{i - 1} - #{((i - 1) + step)}", cluster_triangle.dig(number_bots)[i-1]]
+      end
     end
 
+    {
+      :visual_result_circle => result_circle,
+      :visual_result_square => result_square,
+      :visual_result_triangle => result_triangle,
+      :area_cluster_circle => mas_for_clust_circle,
+      :area_cluster_square => mas_for_clust_square,
+      :area_cluster_triangle => mas_for_clust_triangle
+    }
+  end
+
+  def calculation_clusterization(number_bots, type_area_clust)
     var_for_max = 0
-    mas_for_clast.each do |max|
+
+    type_area_clust.each do |max|
 
       if max > var_for_max
         var_for_max = max
       end
     end
 
-
-    real_claster = (var_for_max * 100).to_f / number_bots.to_f
-
-    {
-      :visual_result => result,
-      :real_cluster => real_claster
-    }
+    (var_for_max * 100).to_f / number_bots.to_f
   end
 
 =begin
