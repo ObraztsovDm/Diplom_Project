@@ -1,130 +1,182 @@
-<link rel="stylesheet" href="application.css">
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
 
-<div style="font-family: 'Times New Roman',serif; font-size: 20px">
-  <h1>Вхідні
-    дані <%= image_tag 'book_one_input_data.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-  </h1>
+<div class="body">
 
-  <hr>
+  <link rel="stylesheet" href="application.css">
+  <p style="color: green"><%= notice %></p>
 
-  <div style="text-align: center;">
-    <%= form_for :active, url: actives_path do |form| %>
-      <div class="alert alert-info">
-        Початок часового проміжку:
-        <%= form.number_field :start, in: 0..60, step: 1, :class => "form_control form-control-md", :id => "start" %>
-        Завершення часового проміжку:
-        <%= form.number_field :end, in: 0..60, step: 1, :class => "form_control form-control-md", :id => "end" %>
-        <br><br>
-        Кількість ботів:
-        <%= form.number_field :number_bots, in: 1..30, step: 1, :class => "form_control form-control-md" %>
-        Ймовірний користувацький рівень кластеризації:
-        <%= form.number_field :guess_claster, in: 0..100, step: 1, :class => "form_control form-control-md" %><br><br>
+  <div style="font-family: 'Times New Roman',serif; font-size: 20px">
 
-        <%= form.submit "Зберегти", :class => "btn btn-success" %>
+    <section class="section-input-data">
+      <div class="container">
+        <h2 class="section-title">
+          Вхідні дані
+          <div style="padding: 10px">
+            <%= image_tag 'book_one_input_data.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          </div>
+        </h2>
       </div>
-    <% end %>
-  </div>
+    </section>
 
-  <hr>
+    <hr>
 
-  <h1>Арени <%= image_tag 'areas.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-  </h1>
+    <div class="alert alert-info">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <%= form_for :active, url: actives_path do |form| %>
+              <div class="card">
+                <div class="card-header text-center">
+                  <h4>Користувацькі дані</h4>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <%= form.label :start, "Початок часового проміжку" %>
+                    <%= form.number_field :start, in: 0..60, step: 1, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= form.label :end, "Завершення часового проміжку" %>
+                    <%= form.number_field :end, in: 0..60, step: 1, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= form.label :number_bots, "Кількість ботів" %>
+                    <%= form.select :number_bots, [3, 5, 7, 10, 13, 15, 17, 20, 23, 25], {}, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= form.label :guess_claster, "Ймовірний користувацький рівень кластеризації" %>
+                    <%= form.number_field :guess_claster, in: 0..100, step: 1, class: "form-control" %>
+                  </div>
+                  <div class="form-group text-center" style="margin-top: 10px">
+                    <%= form.submit "Зберегти", class: "btn btn-success" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <hr>
+    <hr>
 
-  <!-- <div style="background: #616BC1"> -->
-  <div class="features-block">
-    <div class="image">
+    <section class="section-input-data">
+      <div class="container">
+        <h2 class="section-title">
+          Арени
+          <div style="padding: 10px">
+            <%= image_tag 'areas.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          </div>
+        </h2>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- <div style="background: #616BC1"> -->
+    <div class="features-block">
+      <div class="image">
     <span>
         <picture>
           <%= image_tag 'triangle.png', style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
         </picture>
         <p>Трикутна арена</p>
         </span>
-      <span>
+        <span>
         <picture>
           <%= image_tag 'square.png', style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
         </picture>
         <p>Прямокутна арена</p>
         </span>
-      <span>
+        <span>
         <picture>
           <%= image_tag 'circle.png', style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
         </picture>
         <p>Кругла арена</p>
         </span>
+      </div>
     </div>
-  </div>
 
-  <div style="text-align: center; width: 1920px">
-    <picture>
-      <%= image_tag 'labyrinth.png', width: 80, height: 80, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-    </picture>
-    <p>Лабіринт</p>
-  </div>
-  <!-- </div> -->
+    <div style="text-align: center; width: 1920px">
+      <picture>
+        <%= image_tag 'labyrinth.png', width: 80, height: 80, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
+      </picture>
+      <p>Лабіринт</p>
+    </div>
+    <!-- </div> -->
 
-  <hr>
+    <hr>
 
-  <h1>Моделювання
-    результатів <%= image_tag 'ascil.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></h1>
+    <section class="section-input-data">
+      <div class="container">
+        <h2 class="section-title">
+          Моделювання
+          результатів
+          <div style="padding: 10px">
+            <%= image_tag 'ascil.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          </div>
+        </h2>
+      </div>
+    </section>
 
-  <hr>
+    <hr>
 
-  <h4 style="text-align: center">Кластеризація ботів в системі</h4>
+    <h4 style="text-align: center">Кластеризація ботів в системі</h4>
 
-  <hr>
-  <div class="alert alert-success">
-    <%= column_chart [
+    <hr>
+    <div class="alert alert-success">
+      <%= column_chart [
+                         {
+                           name: "Кількість ботів у кластері (трикутна арена)", type: 'column', data: @cluster_triangle
+                         },
+                         {
+                           name: "Кількість ботів у кластері (прямокутна арена)", type: 'column', data: @cluster_square
+                         },
+                         {
+                           name: "Кількість ботів у кластері (кругла арена)", type: 'column', data: @cluster_circle
+                         }
+                       ],
+                       title: "Кластеризація ботів",
+                       colors: ['green', 'blue', 'purple'],
+                       xtitle: "Час",
+                       ytitle: "Боти",
+                       download: { background: "#ffffff" }
+      %>
+    </div>
+
+    <hr>
+
+    <h4 style="text-align: center">Результати дослідження лабіринту</h4>
+
+    <hr>
+    <div class="alert alert-success">
+      <%= line_chart [
                        {
-                         name: "Кількість ботів у кластері (трикутна арена)", type: 'column', data: @cluster_triangle
-                       },
-                       {
-                         name: "Кількість ботів у кластері (прямокутна арена)", type: 'column', data: @cluster_square
-                       },
-                       {
-                         name: "Кількість ботів у кластері (кругла арена)", type: 'column', data: @cluster_circle
-                       }
-                     ],
-                     title: "Кластеризація ботів",
-                     colors: ['green', 'blue', 'purple'],
-                     xtitle: "Час",
-                     ytitle: "Боти",
-                     download: { background: "#ffffff" }
-    %>
-  </div>
-
-  <h4 style="text-align: center">Результати дослідження лабіринту</h4>
-
-  <hr>
-  <div class="alert alert-success">
-    <%= column_chart [
-                       {
-                         name: "Кількість ботів у кластері (трикутна арена)", type: 'column', data: @cluster_triangle
-                       },
-                       {
-                         name: "Кількість ботів у кластері (прямокутна арена)", type: 'column', data: @cluster_square
-                       },
-                       {
-                         name: "Кількість ботів у кластері (кругла арена)", type: 'column', data: @cluster_circle
+                         name: "Кількість ботів, що вийшла з лабіринту", type: 'column', data: @maze_exit_bots
                        }
                      ],
                      title: "Результат лабіринту",
-                     colors: ['green', 'blue', 'purple'],
+                     colors: ['#D86A1B'],
                      xtitle: "Час",
                      ytitle: "Боти",
                      download: { background: "#ffffff" }
-    %>
-  </div>
+      %>
+    </div>
 
-  <hr>
+    <hr>
 
-  <h1>Числові
-    характеристики <%= image_tag 'comp_meteor.png', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></h1>
+    <section class="section-input-data">
+      <div class="container">
+        <h2 class="section-title">
+          Числові характеристики кластеризації
+          <div style="padding: 10px">
+            <%= image_tag 'comp_meteor.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          </div>
+        </h2>
+      </div>
+    </section>
 
-  <hr>
-  <div style="background: #DDDDF5">
+    <hr>
+    <!--<div style="background: #DDDDF5">
     <div style="text-align: center;">
       <table border="1" cellpadding="6" cellspacing="0" align="center">
         <tr>
@@ -135,25 +187,84 @@
         </tr>
         <tr>
           <td><b>Фактичний коефіцієнт кластеризації кожної арени</b></td>
-          <td><%= @real_cluster_triangle %> %</td>
-          <td><%= @real_cluster_square %> %</td>
-          <td><%= @real_cluster_circle %> %</td>
+          <td><%#= @real_cluster_triangle %> %</td>
+          <td><%#= @real_cluster_square %> %</td>
+          <td><%#= @real_cluster_circle %> %</td>
         </tr>
         <tr>
           <td><b>Середня кластеризація</b></td>
-          <td colspan="3"><%= @real_cluster_middle %> %</td>
+          <td colspan="3"><%#= @real_cluster_middle %> %</td>
         </tr>
         <tr>
           <td><b>Користувацький коефіцієнт кластеризації</b></td>
-          <td colspan="3"><%= @user_cluster %> %</td>
+          <td colspan="3"><%#= @user_cluster %> %</td>
         </tr>
       </table>
     </div>
+  </div>-->
+    <div style="padding: 10px;">
+      <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 20px; text-align: center">
+        <thead>
+        <tr style="background: #008000; color: white;">
+          <th style="padding: 10px;">&nbsp;</th>
+          <th style="text-align: center; padding: 10px;">Трикутна арена</th>
+          <th style="text-align: center; padding: 10px;">Прямокутна арена</th>
+          <th style="padding: 10px;">Кругла арена</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td style="padding: 10px;"><b>Фактичний коефіцієнт кластеризації кожної арени</b></td>
+          <td style="padding: 10px; background: #5CD65C;"><%= @real_cluster_triangle %> %</td>
+          <td style="padding: 10px; background: #5B9DE7;"><%= @real_cluster_square %> %</td>
+          <td style="padding: 10px; background: #C14AC1;"><%= @real_cluster_circle %> %</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><b>Середня кластеризація</b></td>
+          <td colspan="3" style="padding: 10px; background: #F5F5F5;"><%= @real_cluster_middle %> %</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><b>Користувацький коефіцієнт кластеризації</b></td>
+          <td colspan="3" style="padding: 10px; background: #F5F5F5;"><%= @user_cluster %> %</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr>
+
+    <section class="section-input-data">
+      <div class="container">
+        <h2 class="section-title">
+          Числові характеристики результатів для лабіринту
+          <div style="padding: 10px">
+            <%= image_tag 'comp_meteor.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          </div>
+        </h2>
+      </div>
+    </section>
+
+    <hr>
+
+    <div style="padding: 10px;">
+      <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 20px; text-align: center">
+        <thead>
+        <tr style="background: #D86A1B; color: white;">
+          <th colspan="2" style="text-align: center; padding: 10px;">Арена лабіринту</th>
+        </tr>
+        </thead>
+
+        <tr>
+          <td><b>Середній час виходу першого боту (для <%= @active.number_bots %> ботів)</b></td>
+          <td style="background: #F5F5F5;"><%= @average_time_maze %> с.</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr>
+
   </div>
-  <hr>
-
 </div>
-
 
 <!--<div id="reciprocals">
   <%# @reciprocals.each do |reciprocal| %>

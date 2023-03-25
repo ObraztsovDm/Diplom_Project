@@ -2,6 +2,7 @@ require_relative 'F:\RubyOnRailsProjects\test_diplom\app\results\Modules.rb'
 include ResultsClusterModule # модуль результатів кластерізації ботів
 include ResultsSeparatedModule # модуль результатів відокремлених ботів ботів
 include VisualizationModule # модуль методів для гістограм
+include ResultsMazeModule # модуль результатів лабіринту
 #include ResultModule # модуль результатів
 
 class ActivesController < ApplicationController
@@ -25,19 +26,24 @@ class ActivesController < ApplicationController
       user_cluster = @active.guess_claster
     end
 
-    visual = visual_cluster_data(start, finish, number_bots)
-    real_cluster_middle = (calculation_clusterization(number_bots, visual.dig(:area_cluster_circle)) +
-      calculation_clusterization(number_bots, visual.dig(:area_cluster_square)) +
-      calculation_clusterization(number_bots, visual.dig(:area_cluster_triangle))) / 3.0
+    visual_cluster = visual_cluster_data(start, finish, number_bots)
+    visual_maze = visual_cluster_maze(start, finish, number_bots)
+    real_cluster_middle = (calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_circle)) +
+      calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_square)) +
+      calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_triangle))) / 3.0
 
+    @cluster_circle = visual_cluster.dig(:visual_result_circle)
+    @cluster_square = visual_cluster.dig(:visual_result_square)
+    @cluster_triangle = visual_cluster.dig(:visual_result_triangle)
 
-    @cluster_circle = visual.dig(:visual_result_circle)
-    @cluster_square = visual.dig(:visual_result_square)
-    @cluster_triangle = visual.dig(:visual_result_triangle)
-    @real_cluster_circle = calculation_clusterization(number_bots, visual.dig(:area_cluster_circle))
-    @real_cluster_square = calculation_clusterization(number_bots, visual.dig(:area_cluster_square))
-    @real_cluster_triangle = calculation_clusterization(number_bots, visual.dig(:area_cluster_triangle))
+    @maze_exit_bots = visual_maze
+
+    @real_cluster_circle = calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_circle))
+    @real_cluster_square = calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_square))
+    @real_cluster_triangle = calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_triangle))
     @real_cluster_middle = real_cluster_middle.round(5)
+
+    @average_time_maze = calculation_time_maze(number_bots).round(5)
     @user_cluster = user_cluster.to_f
   end
 

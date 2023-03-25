@@ -27,6 +27,22 @@ module ResultsClusterModule
   end
 end
 
+module ResultsMazeModule
+  def number_exit_bots
+    {
+      5 => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5],
+      10 => [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10]
+    }
+  end
+
+  def observation
+    {
+      5 => [1.17471, 2.42175, 2.73427, 4.56187, 4.8486, 4.98218, 8.66572, 8.6746, 8.77094, 10.11809, 11.17485, 11.41829, 12.64158, 12.80003, 14.64029, 15.4518, 17.28332, 17.97489, 18.88525, 19.06943, 19.21734, 20.14163, 20.57236, 21.75462, 23.46285, 24.5675, 25.22279, 27.06681, 28.9729, 30.20777, 31.4524, 32.03559, 33.4275, 33.70668, 34.97064, 35.01149, 35.7908, 37.91487, 38.75304, 41.12951, 41.74468, 42.11153, 44.6141, 45.02292, 45.19657, 47.40784, 47.80478, 48.11443, 48.67487, 48.80431, 50.18612, 51.32823, 54.37876, 54.77599, 55.75361, 55.79985, 56.24556, 57.49795, 58.48663, 58.52635],
+      10 => [3, 5, 7, 5, 9, 9, 3, 2, 9, 2, 2, 1, 7, 5, 2, 8, 9, 10, 1, 5, 10, 6, 8, 4, 1, 9, 9, 8, 6, 10, 7, 4, 3, 1, 3, 7, 4, 6, 4, 9, 4, 5, 1, 7, 10, 5, 7, 9, 3, 3, 1, 7, 2, 2, 8, 5, 10, 10, 9, 8]
+    }
+  end
+end
+
 module ResultsSeparatedModule
 =begin
   def active_separated(number_bots)
@@ -47,6 +63,7 @@ end
 module VisualizationModule
   include ResultsClusterModule
   include ResultsSeparatedModule
+  include ResultsMazeModule
 
   def visual_cluster_data(start, finish, number_bots)
     cluster_circle = active_cluster_circle
@@ -87,6 +104,23 @@ module VisualizationModule
     }
   end
 
+  def visual_cluster_maze(start, finish, number_bots)
+    exit_bots = number_exit_bots
+    step = 1
+    result = []
+
+    start.step(finish, step) do |i|
+
+      if i == start
+        result << ["#{i} - #{((i) + step)}", exit_bots.dig(number_bots)[i-1]]
+      else
+        result << ["#{i - 1} - #{((i - 1) + step)}", exit_bots.dig(number_bots)[i-1]]
+      end
+    end
+
+    result
+  end
+
   def calculation_clusterization(number_bots, type_area_clust)
     var_for_max = 0
 
@@ -98,6 +132,12 @@ module VisualizationModule
     end
 
     (var_for_max * 100).to_f / number_bots.to_f
+  end
+
+  def calculation_time_maze(number_bots)
+    observations = observation.dig(number_bots)
+
+    observations.sum.to_f / observations.length.to_f
   end
 
 =begin
