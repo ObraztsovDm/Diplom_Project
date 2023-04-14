@@ -1,17 +1,83 @@
 <div class="container">
-    <div style="text-align: center; font-family: 'Times New Roman',serif; font-size: 20px">
-        <h1><%= @heading %></h1>
+  <div style="text-align: center; font-family: 'Times New Roman',serif; font-size: 20px">
+    <h1><%= @heading %></h1>
 
-        <hr>
+    <hr>
 
-        <h5>Виконавцем наведеної роботи є студент групи КС43 - Образцов Дмитро.<br>Гарним описом всього процесу розробки та
-            підготовки є наступна цитата: «Сенс життя не в тому, щоб чекати, коли закінчиться гроза, а в тому, щоб вчитися
-            танцювати під дощем!»</h5><br><br>
+    <h5>Виконавцем наведеної роботи є студент групи КС43 – Образцов Дмитро.</h5>
+    <%= image_tag 'photo.png', :class => "image_photo", style: "float: center;" %>
 
-        <dfn>P.s. Не знав де ще вибачитись за запізнення, тому просто вибачусь тут ще раз! Вибачте будь ласка!</dfn>
+    <br><br>
 
-        <hr>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            max-width: 900px;
+            width: 100%;
+        }
 
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
 
-    </div>
+        td {
+            background-color: #fff;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+
+        .email-column {
+            width: 40%;
+        }
+
+        .phone-column {
+            width: 60%;
+        }
+
+        .rounded-image {
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+        }
+
+        /* Optional hover effect on rows */
+        tr:hover {
+            background-color: #e2e2e2;
+            cursor: pointer;
+        }
+    </style>
+
+    <h5><b>Контактна інформація</b></h5>
+
+    <table>
+      <thead>
+      <tr>
+        <th class="email-column">Email</th>
+        <th class="phone-column">Номер телефону</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <%= image_tag 'gmail.png', :class => "rounded-image" %><br>xa12850498@student.karazin.ua
+        </td>
+        <td>(+380) 66-122-0753</td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag 'gmail.png', :class => "rounded-image" %><br>obraztsov.dmytro@gmail.com.
+        </td>
+        <td>(+380) 50-572-8233</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <dfn>Завжди відкритий до продуктивної співпраці!</dfn>
+
+    <hr>
+  </div>
 </div>

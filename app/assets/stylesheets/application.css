@@ -33,11 +33,20 @@ td {
     width: 250px;
 }
 
-.image {
+/* For image */
+
+.image_areas {
     display: grid;
     grid-template-columns: max-content max-content max-content;
     align-items: center;
     justify-content: space-around;
+}
+
+.image_photo {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }
 
 .features-block span {
@@ -46,7 +55,7 @@ td {
 }
 
 .features-block span img {
-    width: 70px;
+    width: 80px;
     height: auto;
 }
 
@@ -58,7 +67,7 @@ td {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 1960px;
     margin: 0 auto;
 }
 
@@ -76,3 +85,74 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+/* Backgrounds */
+
+.gray-box {
+    background-color: #E4DCCF;
+}
+
+.green-box {
+    margin-top: 0;
+    background-color: #539165;
+}
+
+/* Buttons */
+
+.my-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.green-button {
+    background-color: #539165;
+}
+
+.blue-button {
+    background-color: #3F497F;
+}
+
+.yellow-button {
+    background-color: #F7C04A;
+}
+
+.white-button {
+    background-color: #F8F5E4;
+    color: #3F497F;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.my-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Lines */
+
+/*
+hr {
+    margin: 0;
+    padding: 0;
+    border: none;
+    height: 1px;
+    background-color: black;
+}*/
+
+
+
+
+
+
+
+
+
+

@@ -1,10 +1,10 @@
 class PagesController < ApplicationController
   def about # вызывает шаблон views/pages/about.html.erb
-    @heading = 'Сторінка про нас!' # переменная вывода информации
+    @heading = 'Сторінка про нас' # переменная вывода информации
   end
 
   def videos
-    @heading = 'Сторінка всіх відеоматеріалів!'
+    @heading = 'Сторінка всіх відеоматеріалів'
   end
 
   def help

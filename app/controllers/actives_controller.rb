@@ -39,7 +39,7 @@ class ActivesController < ApplicationController
     @maze_exit_bots = visual_maze
 
     @real_cluster_circle = calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_circle))
-    @real_cluster_square = calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_square))
+    @real_cluster_square = calculation_clusterization(number_bots, visual_cluster_data(start, finish, number_bots).dig(:area_cluster_square))
     @real_cluster_triangle = calculation_clusterization(number_bots, visual_cluster.dig(:area_cluster_triangle))
     @real_cluster_middle = real_cluster_middle.round(5)
 

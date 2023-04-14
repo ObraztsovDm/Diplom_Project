@@ -78,19 +78,19 @@ module VisualizationModule
     mas_for_clust_square = []
     mas_for_clust_triangle = []
 
-    start.step(finish, step) do |i|
-      mas_for_clust_circle << cluster_circle.dig(number_bots)[i-1]
-      mas_for_clust_square << cluster_square.dig(number_bots)[i-1]
-      mas_for_clust_triangle << cluster_triangle.dig(number_bots)[i-1]
+    (start + 1).step(finish, step) do |i|
+      mas_for_clust_circle << cluster_circle.dig(number_bots)[i - 1]
+      mas_for_clust_square << cluster_square.dig(number_bots)[i - 1]
+      mas_for_clust_triangle << cluster_triangle.dig(number_bots)[i - 1]
 
       if i == start
-        result_circle << ["#{i} - #{((i) + step)}", cluster_circle.dig(number_bots)[i-1]]
-        result_square << ["#{i} - #{((i) + step)}", cluster_square.dig(number_bots)[i-1]]
-        result_triangle << ["#{i} - #{((i) + step)}", cluster_triangle.dig(number_bots)[i-1]]
+        result_circle << ["#{i} - #{((i) + step)}", cluster_circle.dig(number_bots)[i - 1]]
+        result_square << ["#{i} - #{((i) + step)}", cluster_square.dig(number_bots)[i - 1]]
+        result_triangle << ["#{i} - #{((i) + step)}", cluster_triangle.dig(number_bots)[i - 1]]
       else
-        result_circle << ["#{i - 1} - #{((i - 1) + step)}", cluster_circle.dig(number_bots)[i-1]]
-        result_square << ["#{i - 1} - #{((i - 1) + step)}", cluster_square.dig(number_bots)[i-1]]
-        result_triangle << ["#{i - 1} - #{((i - 1) + step)}", cluster_triangle.dig(number_bots)[i-1]]
+        result_circle << ["#{i - 1} - #{((i - 1) + step)}", cluster_circle.dig(number_bots)[i - 1]]
+        result_square << ["#{i - 1} - #{((i - 1) + step)}", cluster_square.dig(number_bots)[i - 1]]
+        result_triangle << ["#{i - 1} - #{((i - 1) + step)}", cluster_triangle.dig(number_bots)[i - 1]]
       end
     end
 
@@ -112,9 +112,9 @@ module VisualizationModule
     start.step(finish, step) do |i|
 
       if i == start
-        result << ["#{i} - #{((i) + step)}", exit_bots.dig(number_bots)[i-1]]
+        result << ["#{i} - #{((i) + step)}", exit_bots.dig(number_bots)[i - 1]]
       else
-        result << ["#{i - 1} - #{((i - 1) + step)}", exit_bots.dig(number_bots)[i-1]]
+        result << ["#{i - 1} - #{((i - 1) + step)}", exit_bots.dig(number_bots)[i - 1]]
       end
     end
 

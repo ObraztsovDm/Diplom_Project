@@ -25,14 +25,15 @@
   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
     <!-- span - ссылки -->
     <!-- home_path - home выставляется в routes -->
-
-    <span class="me-3 py-2 text-dark text-decoration-none"><%= link_to "Головна сторінка", home_path, :class => "btn btn-warning" %></span>
-    <span class="me-3 py-2 text-dark text-decoration-none"><%= link_to "Відеоматеріали", videos_path, :class => "btn btn-dark" %></span>
-    <span class="me-3 py-2 text-dark text-decoration-none"><%= link_to "Про нас", about_path, :class => "btn btn-primary" %></span>
-    <span class="me-3 py-2 text-dark text-decoration-none"><%= link_to "Потрібна допомога?", help_path, :class => "btn btn-light" %></span>
-  </nav>
+    <span class="me-3 py-2 text-dark text-decoration-none">
+      <% unless @current_page == home_path %>
+        <%= link_to "Головна сторінка", home_path, :class => "my-button green-button" %></span>
+      <% end %>
+      <span class="me-3 py-2 text-dark text-decoration-none"><%= link_to "Відеоматеріали", videos_path, :class => "my-button blue-button" %></span>
+    <span class="me-3 py-2 text-dark text-decoration-none"><%= link_to "Про нас", about_path, :class => "my-button yellow-button" %></span>
+    <span class="me-3 py-2 text-dark text-decoration-none"><%= link_to "Потрібна допомога?", help_path, :class => "my-button white-button" %></span>
+      </nav>
   <!-- new_post_path из результата rails routes-->
-
 </div>
 <%= yield %>
 </body>
