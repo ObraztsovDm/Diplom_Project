@@ -44,8 +44,8 @@ td {
 
 .image_photo {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
 }
 
@@ -55,15 +55,30 @@ td {
 }
 
 .features-block span img {
-    width: 80px;
-    height: auto;
+    width: 300px;
+    height: 300px;
+}
+
+.rounded-image {
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+}
+
+.logo-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 30px;
 }
 
 /* For sections */
 
 .section-input-data {
     background-color: #ffffff;
-    padding: 10px 0;
+    /* padding: 10px 0; */
 }
 
 .container {
@@ -77,6 +92,7 @@ td {
     justify-content: center;
     font-size: 36px;
     color: #333;
+    height: 100px
 }
 
 /* For scroll */
@@ -88,13 +104,24 @@ body {
 
 /* Backgrounds */
 
-.gray-box {
-    background-color: #E4DCCF;
+.head-box {
+    background-color: #717A98
 }
 
-.green-box {
-    margin-top: 0;
-    background-color: #539165;
+.tittle-box {
+    background-color: #2D5049
+}
+
+.sub-title-box {
+    background-color: #43C59E
+}
+
+.content-box {
+    background-color: #D0D4E0
+}
+
+.chart-box {
+    background-color: #C8D0E9
 }
 
 /* Buttons */
@@ -138,21 +165,120 @@ body {
 
 /* Lines */
 
-/*
 hr {
     margin: 0;
     padding: 0;
     border: none;
     height: 1px;
     background-color: black;
-}*/
+}
 
+/* Footer */
 
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+}
 
+.section {
+    flex: 1;
+    margin: 0 15px;
+}
 
+h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
 
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
+li {
+    margin-bottom: 10px;
+}
 
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
 
+a:hover {
+    color: #bbb;
+}
+
+/* Button come back */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+}
+
+#scroll-to-top {
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+#scroll-to-top.show {
+    opacity: 1;
+}
+
+#scroll-to-top img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* Inform window */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 50%;
+    text-align: center;
+}
+
+#close-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
 
 

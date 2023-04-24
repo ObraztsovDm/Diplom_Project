@@ -3,130 +3,190 @@
 
 <p style="color: green"><%= notice %></p>
 <div style="font-family: 'Times New Roman',serif; font-size: 20px">
-
-  <div class="container">
-    <h2 class="section-title">
-      Вхідні дані
-      <div style="padding: 10px">
-        <%= image_tag 'book_one_input_data.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+  <div class="tittle-box">
+    <div class="container">
+      <div class="section-title" style="color: white">
+        <b>Вхідні дані</b>
+        <div style="padding: 10px">
+          <%= image_tag 'book_one_input_data_1.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
+        </div>
       </div>
-    </h2>
+    </div>
   </div>
 
-  <hr>
 
-  <div class="alert alert-info">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div style="align-items: center; justify-content: center; display: flex; transform: scaleX(-1)" class="col-md-2">
-          <%= image_tag 'bot_picture.png', alt: 'Book one input data', width: 150, height: 150%>
-        </div>
-        <div class="col-md-8">
-          <%= form_for :active, url: actives_path do |form| %>
-            <div class="card">
-              <!--                <div class="card-header text-center">
-                                <h4>Користувацькі дані</h4>
-                              </div>-->
-              <div class="card-body">
-                <div class="form-group">
-                  <%= form.label :start, "Початок часового проміжку" %>
-                  <%= form.number_field :start, in: 0..60, step: 1, class: "form-control" %>
-                </div>
-                <div class="form-group">
-                  <%= form.label :end, "Завершення часового проміжку" %>
-                  <%= form.number_field :end, in: 0..60, step: 1, class: "form-control" %>
-                </div>
-                <div class="form-group">
-                  <%= form.label :number_bots, "Кількість ботів" %>
-                  <%= form.select :number_bots, [3, 5, 7, 10, 13, 15, 17, 20, 23, 25], {}, class: "form-control" %>
-                </div>
-                <div class="form-group">
-                  <%= form.label :guess_claster, "Ймовірний користувацький рівень кластеризації" %>
-                  <%= form.number_field :guess_claster, in: 0..100, step: 1, class: "form-control" %>
-                </div>
-                <div class="form-group text-center" style="margin-top: 10px">
-                  <%= form.submit "Зберегти", class: "my-button green-button" %>
+  <div class="content-box">
+    <div class="row justify-content-center">
+      <div style="align-items: center; justify-content: center; display: flex; transform: scaleX(-1)" class="col-md-2">
+        <%= image_tag 'bot_picture.png', alt: 'Book one input data', width: 150, height: 150 %>
+      </div>
+      <div class="col-md-8" style="margin-top: 10px; margin-bottom: 10px">
+        <%= form_for :active, url: actives_path, html: { id: 'my-form' } do |form| %>
+          <div class="card" style="background-color: #C8D0E9;">
+            <div class="card-body">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right" for="active_start">Початок часового проміжку:</label>
+                <div class="col-sm-9">
+                  <%= form.number_field :start, in: 0..30, step: 1, class: "form-control", placeholder: "Введіть значення від 0 до 30", style: "background-color: #F7F8FA; font-family: 'Times New Roman',serif; font-size: 20px" %>
                 </div>
               </div>
+              <div class="form-group row" style="margin-top: 10px;">
+                <label class="col-sm-3 col-form-label text-right" for="active_end">Завершення часового проміжку:</label>
+                <div class="col-sm-9">
+                  <%= form.number_field :end, in: 0..30, step: 1, class: "form-control", placeholder: "Введіть значення від 0 до 30", style: "background-color: #F7F8FA;font-family: 'Times New Roman',serif; font-size: 20px" %>
+                </div>
+              </div>
+              <div class="form-group row" style="margin-top: 10px;">
+                <label class="col-sm-3 col-form-label text-right" for="active_number_bots">Кількість ботів:</label>
+                <div class="col-sm-9">
+                  <%= form.select :number_bots, [5, 7, 9, 12, 15], {}, class: "form-control", placeholder: "Виберіть один з наведених варіантів", style: "background-color: #F7F8FA; font-family: 'Times New Roman',serif; font-size: 20px" %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label text-right" for="active_guess_claster">Ймовірний користувацький
+                  рівень кластеризації:</label>
+                <div class="col-sm-9" style="margin-top: 10px;">
+                  <%= form.number_field :guess_claster, in: 0..100, step: 1, class: "form-control", placeholder: "Виберіть значення від 1 до 100", style: "background-color: #F7F8FA; padding: 10px; font-family: 'Times New Roman',serif; font-size: 20px" %>
+                </div>
+              </div>
+              <div class="form-group text-center" style="margin-top: 10px;">
+                <%= form.submit "Зберегти", class: "my-button green-button", style: "font-family: 'Times New Roman',serif; font-size: 20px", onclick: "validateForm(event)" %>
+              </div>
             </div>
-          <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div style="align-items: center; justify-content: center; display: flex;" class="col-md-2">
+        <%= image_tag 'bot_picture.png', alt: 'Book one input data', width: 150, height: 150 %>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h3><b>Помилка</b></h3>
+      <p>Будь ласка, перевірте правильність вхідних даних для всіх полів форми.</p>
+      <button id="close-btn">Закрити</button>
+    </div>
+  </div>
+
+
+  <script>
+      function validateForm(event) {
+          // prevent default form submission behavior
+          event.preventDefault();
+
+          // get form input values
+          const start = document.querySelector('#active_start').value;
+          const end = document.querySelector('#active_end').value;
+          const number_bots = document.querySelector('#active_number_bots').value;
+          const guess_claster = document.querySelector('#active_guess_claster').value;
+
+          // validate input values
+          if (start < 0 || start > 30 || end < 0 || end > 30 || isNaN(number_bots) || guess_claster < 0 || guess_claster > 100) {
+              // show error message to user
+              const modal = document.getElementById('modal');
+              modal.style.display = 'block';
+
+              const closeBtn = document.getElementById('close-btn');
+              closeBtn.onclick = function() {
+                  modal.style.display = 'none';
+              }
+
+              // stop form submission
+              return false;
+          } else {
+              // allow form submission
+              document.querySelector('#my-form').submit();
+          }
+      }
+  </script>
+
+  <section class="section-input-data">
+    <div class="tittle-box">
+      <div class="gray-box">
+        <div class="container">
+          <div class="section-title" style="color: white">
+            <b>Арени</b>
+            <div style="padding: 10px">
+              <%= image_tag 'hand_lamp_1.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
+            </div>
+          </div>
         </div>
-        <div style="align-items: center; justify-content: center; display: flex;" class="col-md-2">
-          <%= image_tag 'bot_picture.png', alt: 'Book one input data', width: 150, height: 150%>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="content-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px;">
+    <div class="features-block">
+      <div class="image_areas">
+    <span>
+        <picture style="margin-bottom: 10px; margin-top: 10px;">
+          <%= image_tag 'triangle.png' %>
+        </picture>
+          <b>Трикутна арена</b>
+        </span>
+        <span>
+        <picture style="margin-bottom: 10px; margin-top: 10px;">
+          <%= image_tag 'square.png' %>
+        </picture>
+        <b>Прямокутна арена</b>
+        </span>
+        <span>
+        <picture style="margin-bottom: 10px; margin-top: 10px;">
+          <%= image_tag 'circle.png' %>
+        </picture>
+        <b>Кругла арена</b>
+        </span>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="flex: 1;">
+          <picture style="margin-bottom: 10px; margin-top: 10px;">
+            <%= image_tag 'bot_picture.png', width: 150, height: 150, style: "transform: scaleX(-1)" %>
+          </picture>
+        </div>
+        <div style="flex: 1;">
+          <picture>
+            <%= image_tag 'labyrinth.png', width: 300, height: 300 %>
+          </picture>
+          <p><b>Лабіринт</b></p>
+        </div>
+        <div style="flex: 1;">
+          <picture>
+            <%= image_tag 'bot_picture.png', width: 150, height: 150 %>
+          </picture>
         </div>
       </div>
     </div>
   </div>
 
-  <hr>
-
-  <section class="section-input-data">
-    <div class="container">
-      <h2 class="section-title">
-        Арени
-        <div style="padding: 10px">
-          <%= image_tag 'areas.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
-        </div>
-      </h2>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- <div style="background: #616BC1"> -->
-  <div class="features-block">
-    <div class="image_areas">
-    <span>
-        <picture>
-          <%= image_tag 'triangle.png'%>
-        </picture>
-        <p>Трикутна арена</p>
-        </span>
-      <span>
-        <picture>
-          <%= image_tag 'square.png'%>
-        </picture>
-        <p>Прямокутна арена</p>
-        </span>
-      <span>
-        <picture>
-          <%= image_tag 'circle.png'%>
-        </picture>
-        <p>Кругла арена</p>
-        </span>
-    </div>
-  </div>
-
-  <div style="text-align: center">
-   <span>
-      <picture>
-        <%= image_tag 'labyrinth.png', width: 80, height: 80%>
-      </picture>
-      <p>Лабіринт</p>
-    </span>
-  </div>
   <!-- </div> -->
 
-  <hr>
-
   <section class="section-input-data">
-    <div class="container">
-      <h2 class="section-title">
-        Моделювання
-        результатів
+    <div class="tittle-box">
+      <div class="section-title" style="color: white;">
+        <b>Моделювання
+          результатів</b>
         <div style="padding: 10px">
-          <%= image_tag 'ascil.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          <%= image_tag 'graph.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
         </div>
-      </h2>
+      </div>
     </div>
   </section>
 
-  <hr>
+  <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
 
-  <h4 style="text-align: center">Кластеризація ботів в системі</h4>
+  <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px;">
+    <b>Кластеризація ботів в системі</b>
+  </div>
 
-  <hr>
-  <div class="alert alert-success">
+  <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+
+  <div class="chart-box">
     <%= column_chart [
                        {
                          name: "Кількість ботів у кластері (трикутна арена)", type: 'column', data: @cluster_triangle
@@ -136,120 +196,346 @@
                        },
                        {
                          name: "Кількість ботів у кластері (кругла арена)", type: 'column', data: @cluster_circle
+                       },
+                       {
+                         name: "Кількість ботів у кластері (лабіринт)", type: 'column', data: @cluster_maze
                        }
                      ],
                      title: "Кластеризація ботів",
-                     colors: ['green', 'blue', 'purple'],
+                     colors: ['green', 'blue', 'purple', 'orange'],
                      xtitle: "Час",
                      ytitle: "Боти",
-                     download: { background: "#ffffff" }
+                     download: { background: "#ffffff" },
+                     library: { title: { fontSize: 40 }, legend: { fontSize: 40 } }
     %>
   </div>
 
-  <hr>
+  <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
 
-  <h4 style="text-align: center">Результати дослідження лабіринту</h4>
+  <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px;">
+    <b>Результати дослідження лабіринту</b>
+  </div>
 
-  <hr>
-  <div class="alert alert-success">
+  <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+
+  <!-- background: rgba(92, 214, 92, 0.5) -->
+  <div class="chart-box">
     <%= line_chart [
                      {
-                       name: "Кількість ботів, що вийшла з лабіринту", type: 'column', data: @maze_exit_bots
+                       name: "Кількість ботів, що вийшла з лабіринту (перше спостереження)", type: 'column', data: @maze_exit_bots.dig(:first_observation)
+                     },
+                     {
+                       name: "Кількість ботів, що вийшла з лабіринту (друге спостереження)", type: 'column', data: @maze_exit_bots.dig(:second_observation)
+                     },
+                     {
+                       name: "Кількість ботів, що вийшла з лабіринту (третє спостереження)", type: 'column', data: @maze_exit_bots.dig(:third_observation)
                      }
                    ],
-                   title: "Результат лабіринту",
-                   colors: ['#D86A1B'],
+                   title: "Спостереження за виходом ботів з лабіринту",
+                   colors: ['blue', 'green', 'orange'],
                    xtitle: "Час",
                    ytitle: "Боти",
                    download: { background: "#ffffff" }
     %>
   </div>
 
-  <hr>
+  <div class="content-box text-center" style="padding: 10px">
+    <button id="toggle-btn" class="my-button yellow-button" style="font-family: 'Times New Roman',serif; font-size: 20px">Показати
+      усереднені дані для всіх систем
+    </button>
+  </div>
+
+  <div class="head-box" id="chart-box" style="display: none">
+
+    <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+
+    <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px;">
+      <b>Середнє значення всіх спостережень виходів ботів з лабіринту для всіх варіацій систем</b>
+    </div>
+
+    <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+
+    <div class="chart-box">
+      <%= column_chart [
+                         {
+                           name: "Система з 5-ох ботів", type: 'column', data: @visual_all_system_maze.dig(:five_bots)
+                         },
+                         {
+                           name: "Система з 7-ох ботів", type: 'column', data: @visual_all_system_maze.dig(:seven_bots)
+                         },
+                         {
+                           name: "Система з 9-ох ботів", type: 'column', data: @visual_all_system_maze.dig(:nine_bots)
+                         },
+                         {
+                           name: "Система з 12-ох ботів", type: 'column', data: @visual_all_system_maze.dig(:twelve_bots)
+                         },
+                         {
+                           name: "Система з 15-ох ботів", type: 'column', data: @visual_all_system_maze.dig(:fifteen_bots)
+                         }
+                       ],
+                       title: "Загальний графік результатів виходу ботів з лабіринту у відсоткому співвідношенні",
+                       colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                       xtitle: "Час",
+                       ytitle: "Відсотки",
+                       download: { background: "#ffffff" }
+      %>
+    </div>
+  </div>
+
+  <script>
+      let chartBox = document.getElementById("chart-box");
+      let toggleBtn = document.getElementById("toggle-btn");
+
+      toggleBtn.addEventListener("click", function () {
+          if (chartBox.style.display === "none") {
+              chartBox.style.display = "block";
+          } else {
+              chartBox.style.display = "none";
+          }
+      });
+  </script>
 
   <section class="section-input-data">
-    <div class="container">
-      <h2 class="section-title">
-        Числові характеристики кластеризації
+    <div class="tittle-box">
+      <div class="section-title" style="color: white">
+        <b>Числові характеристики кластеризації</b>
         <div style="padding: 10px">
-          <%= image_tag 'comp_meteor.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          <%= image_tag 'small_clock.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
         </div>
-      </h2>
+      </div>
     </div>
   </section>
 
-  <hr>
-  <div style="padding: 10px;">
-    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 20px; text-align: center">
+  <div style="padding: 10px;  background: #ffffff">
+    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
       <thead>
-      <tr style="background: #008000; color: white;">
-        <th style="padding: 10px;">&nbsp;</th>
-        <th style="text-align: center; padding: 10px;">Трикутна арена</th>
-        <th style="text-align: center; padding: 10px;">Прямокутна арена</th>
-        <th style="padding: 10px;">Кругла арена</th>
+      <tr style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 30px;">
+        <td style="padding: 50px; background: #ffffff">&nbsp;</td>
+        <td style="text-align: center; padding: 50px;"><b>Трикутна арена</b></td>
+        <td style="text-align: center; padding: 50px;"><b>Прямокутна арена</b></td>
+        <td style="padding: 50px;"><b>Кругла арена</b></td>
       </tr>
       </thead>
+
       <tbody>
       <tr>
         <td style="padding: 10px;"><b>Фактичний коефіцієнт кластеризації кожної арени</b></td>
-        <td style="padding: 10px; background: #5CD65C;"><%= @real_cluster_triangle %> %</td>
-        <td style="padding: 10px; background: #5B9DE7;"><%= @real_cluster_square %> %</td>
-        <td style="padding: 10px; background: #C14AC1;"><%= @real_cluster_circle %> %</td>
+        <td style="padding: 10px; background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_triangle %>
+          %
+        </td>
+        <td style="padding: 10px; background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_square %>
+          %
+        </td>
+        <td style="padding: 10px; background: rgba(193, 74, 193, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_circle %>
+          %
+        </td>
       </tr>
       <tr>
         <td style="padding: 10px;"><b>Середня кластеризація</b></td>
-        <td colspan="3" style="padding: 10px; background: #F5F5F5;"><%= @real_cluster_middle %> %</td>
+        <td colspan="3" style="padding: 10px; background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_middle %>
+          %
+        </td>
       </tr>
       <tr>
         <td style="padding: 10px;"><b>Користувацький коефіцієнт кластеризації</b></td>
         <% diff = (@real_cluster_middle - @user_cluster).abs %>
         <% color = if diff >= 50.0
-                     "#FF7C80"
+                     "#FFABAF"
                    elsif diff >= 30.0
-                     "#FFD966"
+                     "#FFEBAF"
                    elsif diff >= 0.0
-                     "#A8D08D"
+                     "#ADEAAD"
                    else
                      ""
                    end %>
-        <td colspan="3" style="padding: 10px; background: <%= color %>;"><%= @user_cluster %> %</td>
+        <td colspan="3" style="padding: 10px; background: <%= color %>; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @user_cluster %>
+          %
+        </td>
       </tr>
 
       </tbody>
     </table>
   </div>
 
-  <hr>
 
   <section class="section-input-data">
-    <div class="container">
-      <h2 class="section-title">
-        Числові характеристики результатів для лабіринту
+    <div class="tittle-box">
+      <div class="section-title" style="color: white;">
+        <b>Числові характеристики результатів для лабіринту</b>
         <div style="padding: 10px">
-          <%= image_tag 'comp_meteor.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+          <%= image_tag 'maze.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
         </div>
-      </h2>
+      </div>
     </div>
   </section>
 
   <hr>
 
-  <div style="padding: 10px;">
-    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 20px; text-align: center">
+  <div style="padding: 10px; background: #ffffff">
+    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
       <thead>
-      <tr style="background: #D86A1B; color: white;">
-        <th colspan="2" style="text-align: center; padding: 10px;">Арена лабіринту</th>
+
+      <tr style="background: #F5F5F5;">
+        <th colspan="4" style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">Арена
+          лабіринту
+        </th>
       </tr>
+
       </thead>
 
       <tr>
-        <td><b>Середній час виходу першого боту (для <%= @active.number_bots %> ботів)</b></td>
-        <td style="background: #F5F5F5;"><%= @average_time_maze %> с.</td>
+        <td style="padding: 40px">&nbsp;</td>
+        <td style="background: rgba(91, 157, 231, 0.5); text-align: center;  font-family: 'Times New Roman',serif; font-size: 27px;">
+          <b>Перше спостереження</b>
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); text-align: center; font-family: 'Times New Roman',serif; font-size: 27px;">
+          <b>Друге спостереження</b>
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); text-align: center;  font-family: 'Times New Roman',serif; font-size: 27px;">
+          <b>Третє спостереження</b>
+        </td>
       </tr>
+
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
+          виходу першого боту з лабіринту
+        </th>
+      </tr>
+
+      <tr>
+        <td><b>Час виходу першого боту</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[0] %>
+          с.
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[1] %>
+          с.
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[2] %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середній час виходу першого боту</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_time_maze_out %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
+          середнього часу виходу ботів з лабіринту
+        </th>
+      </tr>
+
+      <tr>
+        <td><b>Середній час виходу ботів з лабіринту</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[0] %>
+          с.
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[1] %>
+          с.
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[2] %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середній час виходу ботів з лабіринту на основі всіх спостережень</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_result_observations.round(5) %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Відхилення від середнього значення</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation[0] %>
+          с.
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation[1] %>
+          с.
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation[2] %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє квадратичне відхилення</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @mean_square_deviation.round(5) %>
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
+          середнього часу перебування в лабіринті
+        </th>
+      </tr>
+
+      <tr>
+        <td><b>Середній час перебування ботів в лабіринті</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @time_observation_stay[0] %>
+          с.
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @time_observation_stay[1] %>
+          с.
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @time_observation_stay[2] %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середній час перебування ботів в лабіринті на основі всіх спостережень</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_time_maze_stay.round(5) %>
+          с.
+        </td>
+      </tr>
+
     </table>
   </div>
 
   <hr>
+
+  <button id="back-to-top">Button up</button>
+
+  <script>
+      let backToTopButton = document.querySelector("#back-to-top");
+      let scrollButton = document.createElement("div");
+      scrollButton.setAttribute("id", "scroll-to-top");
+      scrollButton.innerHTML = '<%= image_tag "arrow_up_mod.png", width: "100", height: "100" %>';
+      document.body.appendChild(scrollButton);
+
+      let scrollPositionToShowButton = 2900;
+
+      window.addEventListener('scroll', function () {
+          let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+          let windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+          if (scrollPosition > scrollPositionToShowButton) {
+              document.getElementById('scroll-to-top').classList.add('show');
+          } else {
+              document.getElementById('scroll-to-top').classList.remove('show');
+          }
+      });
+
+      backToTopButton.addEventListener("click", function () {
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
+      });
+
+      scrollButton.addEventListener("click", function () {
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
+      });
+  </script>
+
 
 </div>
 

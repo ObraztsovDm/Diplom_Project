@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="application.css">
+
 <div style="text-align: center">
   <div style="text-align: center; font-family: 'Times New Roman',serif; font-size: 20px">
     <h1> <%= image_tag 'lamp_idea.png', width: 50, height: 70, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
@@ -7,7 +10,6 @@
     </h1>
 
     <br>
-
 
 
     <dfn><b>Взаємний розподіл</b>, також відомий як логарифмічно рівномірний розподіл, є безперервний розподіл
@@ -219,5 +221,42 @@
     <p><%= image_tag 'integral-par.png', width: 1300, height: 400, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
 
     <hr>
+
+    <button id="back-to-top">Button up</button>
+
+    <script>
+        let backToTopButton = document.querySelector("#back-to-top");
+        let scrollButton = document.createElement("div");
+        scrollButton.setAttribute("id", "scroll-to-top");
+        scrollButton.innerHTML = '<%= image_tag "arrow_up_mod.png", width: "150", height: "150" %>';
+        document.body.appendChild(scrollButton);
+
+        let scrollPositionToShowButton = 1500;
+
+        window.addEventListener('scroll', function () {
+            let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            let windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            if (scrollPosition > scrollPositionToShowButton) {
+                document.getElementById('scroll-to-top').classList.add('show');
+            } else {
+                document.getElementById('scroll-to-top').classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        scrollButton.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
   </div>
 </div>

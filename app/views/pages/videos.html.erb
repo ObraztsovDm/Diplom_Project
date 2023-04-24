@@ -1,154 +1,450 @@
-<div style="text-align: center">
-  <div style="text-align: center; font-family: 'Times New Roman',serif; font-size: 20px">
-    <h1>
-    <%= @heading %>
-    </h1>
+<!DOCTYPE html>
+<link rel="stylesheet" href="application.css">
 
-    <hr>
-    <h3><%= image_tag 'triangle.png', width: 50, height: 50 %>
-      <b>Трикутна арена</b>
-      <%= image_tag 'triangle.png', width: 50, height: 50 %></h3>
-    <hr>
+<p style="color: green"><%= notice %></p>
+<div style="font-family: 'Times New Roman',serif; font-size: 20px; text-align: center">
+  <div class="tittle-box">
+    <div class="container">
+      <div class="section-title" style="color: white;">
+        <b><%= @heading %></b>
+        <div style="padding: 10px">
+          <%= image_tag 'camera.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <h4><%= image_tag 'color-wheel.png', width: 50, height: 50 %>
-     Експеримент з трьома ботами
-      <%= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-<!--    <video width="640" height="360" controls>
-      <source src="<%#= asset_path('/third_bot.mp4') %>" type="video/mp4">
-      <source src="<%#= asset_path('/third_bot.webm') %>" type="video/webm">
-      Your browser does not support the video tag.
-    </video>-->
 
-    <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з п’ятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з сьома ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з десятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з тринадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з шістнадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з двадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
 
-    <hr>
-    <h3><%#= image_tag 'square.png', width: 50, height: 50 %>
-      <b>Прямокутна арена</b>
-      <%#= image_tag 'square.png', width: 50, height: 50 %></h3>
-    <hr>
+  <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px; padding: 10px;">
+    <%= image_tag 'level.png', width: 75, height: 75, style: "padding: 10px" %>
+    <b>Тест рівності покриття</b><%= image_tag 'level.png', width: 75, height: 75, style: "padding: 10px" %>
+  </div>
 
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з трьома ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з п’ятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з сьома ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з десятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з тринадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з шістнадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з двадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
 
-    <hr>
-    <h3><%#= image_tag 'circle.png', width: 50, height: 50 %>
-      <b>Кругла арена</b>
-      <%#= image_tag 'circle.png', width: 50, height: 50 %></h3>
-    <hr>
+  <div class="content-box">
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Відео підтвердження відсутності кута нахилу поверхні арени</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aeNKpTReL6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з трьома ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з п’ятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з сьома ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з десятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з тринадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з шістнадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з двадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="head-box">
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
 
-    <hr>
-    <h3><%#= image_tag 'labyrinth.png', width: 50, height: 50 %>
-      <b>Лабіринт</b>
-      <%#= image_tag 'labyrinth.png', width: 50, height: 50 %></h3>
-    <hr>
+      <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px; padding: 10px;">
+        <%= image_tag 'triangle.png', width: 75, height: 75, style: "padding: 10px" %>
+        <b>Трикутна арена</b>
+        <%= image_tag 'triangle.png', width: 75, height: 75, style: "padding: 10px" %>
+      </div>
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+    </div>
 
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з трьома ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з п’ятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з сьома ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з десятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з тринадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з шістнадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <h4><%#= image_tag 'color-wheel.png', width: 50, height: 50 %>
-      Експеримент з двадцятьма ботами
-      <%#= image_tag 'color-wheel.png', width: 50, height: 50 %></h4>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c74kMCOmP80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
--->
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/pEeTUcllRsk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з сімома ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/NwnqMKPgedM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дяв’ятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/S0dkVhbVy3Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дванадцятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hnOVza_hvcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятнадцятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/BkWFjQqUBVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="head-box">
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+
+      <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px; padding: 10px;">
+        <%= image_tag 'square.png', width: 75, height: 75, style: "padding: 10px" %>
+        <b>Прямокутна арена</b><%= image_tag 'square.png', width: 75, height: 75, style: "padding: 10px" %>
+      </div>
+
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+    </div>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ISLLee_PBI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з сімома ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/zna_UpkuPF4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дяв’ятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9E1S41-wXwg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дванадцятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/e22bvsq4Src" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятнадцятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/tATmozcv-SI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="head-box">
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+
+      <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px; padding: 10px;">
+        <%= image_tag 'circle.png', width: 75, height: 75, style: "padding: 10px" %>
+        <b>Кругла арена</b><%= image_tag 'circle.png', width: 75, height: 75, style: "padding: 10px" %>
+      </div>
+
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+    </div>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OV7GitWSqWk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з сімома ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/IitFdgeEpPA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дяв’ятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/P6OdV-3hkpI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дванадцятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ocV_p4yeKws" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятнадцятьма ботами</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/AR5Uioie_nM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div class="head-box">
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+
+      <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px; padding: 10px;">
+        <%= image_tag 'labyrinth.png', width: 75, height: 75, style: "padding: 10px" %>
+        <b>Лабіринт</b><%= image_tag 'labyrinth.png', width: 75, height: 75, style: "padding: 10px" %>
+      </div>
+
+      <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
+    </div>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятьма ботами<br>(перше спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jQkF5kDB_GI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятьма ботами<br>(друге спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/EgtvP-EK4Ek" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятьма ботами<br>(третє спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/JVTFxzqktYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з сімома ботами<br>(перше спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6pJhbsE8ggM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з сімома ботами<br>(друге спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/NJf6Sm88TBQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з сімома ботами<br>(третє спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aRAh29aUP-s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дев’ятьма ботами<br>(перше спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/gnoOz0uxIC8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дев’ятьма ботами<br>(друге спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/e-O1wOzD3PE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дев’ятьма ботами<br>(третє спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/W6rvwkH22kc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дванадцятьма ботами<br>(перше спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/FhqkdGZVRzw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дванадцятьма ботами<br>(друге спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/-bpwDdzU-OM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з дванадцятьма ботами<br>(третє спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/NESltJ9FeKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятнадцятьма ботами<br>(перше спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YWmTbJjK5fY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятнадцятьма ботами<br>(друге спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/p-oAmCuqtyI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <div style="margin: 0 auto; max-width: 500px;">
+      <div style="padding: 10px; display: flex; align-items: center;">
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+        <div class="container" style="margin-right: 1px; margin-left: 1px;">
+          <b>Експеримент з п’ятнадцятьма ботами<br>(третє спостереження)</b>
+        </div>
+        <%= image_tag 'color-wheel.png', width: 50, height: 50 %>
+      </div>
+    </div>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Wm0vTO6mtHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+    <button id="back-to-top">Button up</button>
+
+    <script>
+        let backToTopButton = document.querySelector("#back-to-top");
+        let scrollButton = document.createElement("div");
+        scrollButton.setAttribute("id", "scroll-to-top");
+        scrollButton.innerHTML = '<%= image_tag "arrow_up_mod.png", width: "100", height: "100" %>';
+        document.body.appendChild(scrollButton);
+
+        let scrollPositionToShowButton = 1000;
+
+        window.addEventListener('scroll', function () {
+            let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            let windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            if (scrollPosition > scrollPositionToShowButton) {
+                document.getElementById('scroll-to-top').classList.add('show');
+            } else {
+                document.getElementById('scroll-to-top').classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        scrollButton.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
   </div>
 </div>
