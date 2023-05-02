@@ -1,224 +1,397 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="application.css">
 
+<p style="color: green"><%= notice %></p>
 <div style="text-align: center">
   <div style="text-align: center; font-family: 'Times New Roman',serif; font-size: 20px">
-    <h1> <%= image_tag 'lamp_idea.png', width: 50, height: 70, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-      Теоретичні дані
-      з активної
-      матрерії <%= image_tag 'lamp_idea.png', width: 50, height: 70, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-    </h1>
+    <div class="tittle-box">
+      <div class="container">
+        <div class="section-title" style="color: white">
+          <b>Роз’яснення функціонального блоку «Вхідні дані»</b>
+          <div style="padding: 10px">
+            <%= image_tag 'info.png', alt: 'info', width: 55, height: 50, class: 'icon' %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <br>
+    <div class="content-box">
+      <!--      <b style="font-size: 30px;"> Блок «Вхідні дані» складається з 4 параметрів, про які детальніше наведено у
+              відповідній таблиці нижче.</b>-->
+
+      <div style="padding: 10px;">
+        <table style="width: 70%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center; background: white;">
+          <thead>
+
+          <tr style="background: #F5F5F5;">
+            <td style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;"><b>
+              Назва
+              параметру</b>
+            </td>
+            <td style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">
+              <b>Роз’яснення</b>
+            </td>
+          </tr>
+
+          </thead>
+
+          <tr>
+            <td><b>Початок часового проміжку</b>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Цей параметр визначається в діапазоні<b> від 0 до 30 секунд</b>.<br>
+                Такий спектр значень було обрано через те, що всі експерименти, на яких ґрунтується дослідження,
+                обмежувалися саме такими граничними значеннями часу проведення. </dfn>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <b>Завершення часового проміжку</b>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Цей параметр, як і попередній, визначається в діапазоні<b> від 0 до 30 секунд</b>.<br>
+                З визначенням спектру значень можна ознайомитися в роз’ясненні для першого параметру. </dfn>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <b>Кількість ботів</b>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Цей параметр, при взаємодій з полем введення, визначається у випадаючому списку<b> значення
+                варіюються від 5 ботів до 15 ботів</b>.<br>
+                Можна обрати 5, 7, 9, 12 або 15 ботів, через те, що саме на такій кількості створених ботів і
+                проводилися експерименти, на основі яких і будуються всі відповідні графічні та числові предсталення.
+              </dfn>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <b>Очікуваний користувацький рівень кластеризації</b>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Цей параметр визначається в діапазоні<b> від 0 до 100 відсотків</b>.<br>
+                Одразу варто зауважити, що цей параметр <b>не впливає</b> прямо на результати обчислень. <br>Цей
+                параметр для
+                взаємодія з користувачем, яка дає змогу зробити користувацьку оцінку середньму рівню кластеризації
+                систем, які розглядаються в дослідженні.
+              </dfn>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tittle-box">
+      <div class="container">
+        <div class="section-title" style="color: white">
+          <b>Повідомлення про помилки у функціональному блоці «Вхідні дані»</b>
+          <div style="padding: 10px">
+            <%= image_tag 'info.png', alt: 'info', width: 55, height: 50, class: 'icon' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <div style="padding: 10px;">
+        <table style="width: 70%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center; background: white;">
+          <thead>
+
+          <tr class="col-md-4" style="background: #F5F5F5;">
+            <td style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;"><b>
+              Повідомлення про помилку</b>
+            </td>
+            <td class="col-md-8" style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">
+              <b>Роз’яснення</b>
+            </td>
+          </tr>
+
+          </thead>
+
+          <tr>
+            <td><%= image_tag 'msg_error_1.png', alt: 'info', width: 600, height: 170, class: 'icon' %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Це подомлення може свідчити про <b>ряд характерних помилок</b>:<br>
+                <li>
+                  Таке повідомлення може виникати у випадку, коли введені вхідні дані вийшли за допустимі діапазони;
+                </li>
+                <li>
+                  Таке повідомлення також може свідчити про конфлік між значеннями <b>«початку часового проміжку»</b> та
+                  <b>«кінцем часового проміжку»</b>. <br> Під конфліктом мається на увазі неможливий часовий проміжок
+                  (коли
+                  фінальне значення перевищує початкове).
+                </li>
+              </dfn>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= image_tag 'msg_error_2.png', alt: 'info', width: 600, height: 170, class: 'icon' %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Це подомлення може свідчити про те, що одне або декілька полів введення значень параметрів
+                залишилося(-ися) попрожнім(-и). </dfn>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tittle-box">
+      <div class="container">
+        <div class="section-title" style="color: white">
+          <b>Роз’яснення функціонального блоку «Моделювання результатів»</b>
+          <div style="padding: 10px">
+            <%= image_tag 'info.png', alt: 'info', width: 55, height: 50, class: 'icon' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <div style="padding: 10px;">
+        <table style="width: 70%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center; background: white;">
+          <thead>
+
+          <tr class="col-md-6" style="background: #F5F5F5;">
+            <td style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;"><b>
+              Функція</b>
+            </td>
+            <td class="col-md-6" style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">
+              <b>Роз’яснення</b>
+            </td>
+          </tr>
+
+          </thead>
+
+          <tr>
+            <td>
+              <%= image_tag 'modeling_one.png', alt: 'info', width: 800, height: 170, class: 'icon', style: "padding: 10px" %>
+              <%= image_tag 'modeling_two.png', alt: 'info', width: 800, height: 170, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Це демонстрація функції наведених графіків у застосунку, яка дає змогу проглядати конкретні набори
+                даних на графіках (від візуалізації всіх даних до окремого, в цьому випадку, гістограмного
+                представлення).
+              </dfn>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= image_tag 'modeling_three.png', alt: 'info', width: 800, height: 170, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Варто звертати увагу на підказки, які представлені у застосунку спеціальною піктограмою
+                «<span class="icon-container">
+                    <i class="fas fa-question-circle"></i>
+                  <span class="tooltip" style="height: 50px; width: 170px;">Привіт, я підказка!</span>
+                  </span>».
+              </dfn>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= image_tag 'modeling_five.png', alt: 'info', width: 800, height: 170, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Навівши курсор на окремий гістограмний стовпець, можна побачити характерну інформацію про обраний
+                відрізок даних.
+              </dfn>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= image_tag 'modeling_four.png', alt: 'info', width: 800, height: 170, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> Натиснувши на кнопку <b>«Показати усереднені дані для всіх систем»</b> можна побачити додатковий
+                графік з
+                усіма усередниними показниками у визначеному часовому діапазоні для лабіринтової арени.
+              </dfn>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="tittle-box">
+      <div class="container">
+        <div class="section-title" style="color: white">
+          <b>Роз’яснення функціонального блоку «Числові характеристики кластеризації системи»</b>
+          <div style="padding: 10px">
+            <%= image_tag 'info.png', alt: 'info', width: 55, height: 50, class: 'icon' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <div style="padding: 10px;">
+        <table style="width: 70%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center; background: white;">
+          <thead>
+
+          <tr class="col-md-4" style="background: #F5F5F5;">
+            <td style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;"><b>
+              Таблиця</b>
+            </td>
+            <td class="col-md-8" style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">
+              <b>Роз’яснення</b>
+            </td>
+          </tr>
+
+          </thead>
 
 
-    <dfn><b>Взаємний розподіл</b>, також відомий як логарифмічно рівномірний розподіл, є безперервний розподіл
-      ймовірностей,
-      який визначається, як правосторонній і обмежений мінімальним та максимальним значеннями.<br> Чим більше
-      відношення
-      максимального до мінімального значення, тим більше асиметричний вид набуває розподіл.</dfn><br><br>
+          <tr>
+            <td>
+              <%= image_tag 'num_res_one.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+              <%= image_tag 'num_res_two.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+              <%= image_tag 'num_res_three.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+              <%= image_tag 'num_res_five.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> У цій таблиці наведено показники кластеризації для всіх розглянутих арен у цьому дослідженні.<br>Також
+                підраховується середній показник кластеризації, який порівнюється з користувацьким показником. Саме це
+                порівняння і дає характерне забарвлення поля показнику користувацької кластеризації:
+                <li>
+                  Червоний колір — відхилення від фактичного показника середньої кластеризації більше ніж 50%;
+                </li>
+                <li>
+                  Жовтий колір — відхилення від фактичного показника середньої кластеризації більше ніж 30%, але менше
+                  ніж 50%;
+                </li>
+                <li>
+                  Зелений колір — відхилення від фактичного показника середньої кластеризації менше ніж 30%.
+                </li>
+                <br>Також треба не забувати користуватися підказками, які зберігають додаткову інформацію про дані, які
+                демоструються та підраховуються у таблицях.
 
-    <hr>
+              </dfn>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-    <h2>Характеристики взаємного розподілу</h2>
-    <table border="1" cellpadding="6" cellspacing="0" align="center">
-      <tr>
-        <td>Параметри</td>
-        <!--<td>0 < a < b, де a, b - дійсні числа</td>-->
-        <td><%= image_tag 'parameters.png', width: 170, height: 40, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></td>
-      </tr>
-      <tr>
-        <td>ФШІ(<i>функція щільності ймовірності</i>)</td>
-        <td><%= image_tag 'PDF.png', width: 50, height: 90, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></td>
-      </tr>
-      <tr>
-        <td>КФР(<i>кумулятивна функція розподілу</i>)</td>
-        <td><%= image_tag 'CDF.png', width: 50, height: 90, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></td>
-      </tr>
-      <tr>
-        <td>Математичне очікування</td>
-        <td><%= image_tag 'average.png', width: 50, height: 90, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></td>
-      </tr>
-      <tr>
-        <td>Мода</td>
-        <td>а</td>
-      </tr>
-      <tr>
-        <td>Медіана</td>
-        <td><%= image_tag 'median.png', width: 40, height: 40, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></td>
-      </tr>
-      <tr>
-        <td>Дисперсія</td>
-        <td><%= image_tag 'dispersion.png', width: 150, height: 90, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></td>
-      </tr>
-    </table>
-    <br>
+    <div class="tittle-box">
+      <div class="container">
+        <div class="section-title" style="color: white">
+          <b>Роз’яснення функціонального блоку «Числові характеристики дослідження лабіринту»</b>
+          <div style="padding: 10px">
+            <%= image_tag 'info.png', alt: 'info', width: 55, height: 50, class: 'icon' %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <h2>Графік функції щільності ймовірності для взаємного розподілу</h2>
-    <p><%= image_tag 'PDF-img.png', width: 400, height: 350, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
-    <br>
+    <div class="content-box">
+      <div style="padding: 10px;">
+        <table style="width: 70%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center; background: white;">
+          <thead>
 
-    <hr>
+          <tr class="col-md-4" style="background: #F5F5F5;">
+            <td style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;"><b>
+              Таблиця</b>
+            </td>
+            <td class="col-md-8" style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">
+              <b>Роз’яснення</b>
+            </td>
+          </tr>
 
-    <h2> <%= image_tag 'ruby.jpg', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-      Інструкція по експлуатації
-      програми <%= image_tag 'ruby.jpg', width: 50, height: 50, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-    </h2>
+          </thead>
 
-    <hr>
+          <tr>
+            <td>
+              <%= image_tag 'num_res_four.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+              <%= image_tag 'num_res_six.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> У цій таблиці наведено показники часу виходу першого боту або ботів з лабіринту. Ці дані можна
+                відслідкувати за гістограмними представленнями, але вони наведені і в числовому вигляді. Це зроблено для
+                того, щоб більш наочніше можно було ці дані аналізувати і фіксувати як було отримане середнє значення
+                часу виходу першого боту або ботів.
+                <br><br>
+                У підказці для всіх таблиць блоку дослідження лабіринту наводиться проміжок часу, який було задано
+                користувачем у початковій формі блоку «Вхідні дані».
+              </dfn>
+            </td>
+          </tr>
 
-    <h4>Блок <b>Вхідні дані</b></h4>
+          <tr>
+            <td>
+              <%= image_tag 'num_res_seven.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> У цій таблиці наведено показники середнього часу виходу ботів для кожного спостереження окремо, що
+                було вирахувано за наступною
+                формулою:<br>
+                <div style="justify-content: center; align-items: center; display: flex;">
+                  <%= image_tag 'formula_one.png', alt: 'info', width: 200, height: 100, class: 'icon', style: "padding: 10px;" %>
+                  ,
+                  <br>
+                </div>
+                де n &le; N — кількість ботів, які вийшли з лабіринту;<br>
+                <div style="margin-left: 32px">
+                  t<sub>i</sub> — cекунда виходу i-го бота з лабіринту;<br>
+                  N — кількість ботів у лабіринті.<br>
+                </div>
+                Знаючи ці дані, можна прорахувати середній час виходу ботів з лабіринту на основі всіх спостережень:<br>
+                <div style="justify-content: center; align-items: center; display: flex;">
+                  <%= image_tag 'formula_two.png', alt: 'info', width: 200, height: 100, class: 'icon', style: "padding: 10px" %>
+                  ,
+                  <br>
+                </div>
+                де N<sub>e</sub> — кількість експериментів;<br>
+                <div style="margin-left: 32px">
+                  <%= image_tag 'argument_one.png', alt: 'info', width: 50, height: 30, class: 'icon' %> — середня
+                  секунда виходу ботів у а-ому експерименті.<br>
+                </div>
+                Відхилення від середнього значення було обчислено за простою формулою:<br>
+                <div style="justify-content: center; align-items: center; display: flex;">
+                  <%= image_tag 'formula_three.png', alt: 'info', width: 200, height: 50, class: 'icon', style: "padding: 10px" %>
+                  <br>
+                </div>
+                Останнім параметром є середнє квадратичне відхилення, яке було розраховано наступним чином:<br>
+                <div style="justify-content: center; align-items: center; display: flex;">
+                  <%= image_tag 'formula_four.png', alt: 'info', width: 200, height: 100, class: 'icon', style: "padding: 10px" %>
+                  <br>
+                </div>
+              </dfn>
+            </td>
+          </tr>
 
-    <hr>
-
-    <p><%= image_tag 'input-data.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
-    <h4>У цьому блоці необхідно ввести характерні значення, які необхідні для коректного моделювання</h4>
-    <p><%= image_tag 'input-data-2.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
-
-
-    <h4>Обмеження для даних наведені у таблиці</h4>
-    <table border="1" cellpadding="6" cellspacing="0" align="center">
-      <tr>
-        <td><b>Параметр</b></td>
-        <td><b>Обмеження</b></td>
-      </tr>
-      <tr>
-        <td>Початок проміжку</td>
-        <td>Цілі значення (> 0 та < 2000)</td>
-      </tr>
-      <tr>
-        <td>Завершення проміжку</td>
-        <td>Цілі значення (> 0 та < 2000)</td>
-      </tr>
-      <tr>
-        <td>Кількість точок</td>
-        <td>Цілі значення (> 5 та < 10000000)</td>
-      </tr>
-      <tr>
-        <td>Кількість інтервалів розбиття</td>
-        <td>Цілі значення (> 5 та < 1000)</td>
-      </tr>
-    </table>
-
-    <h4>
-      Якщо дані не було введено повністю и коректно, попередження про це не змусить себе довго чекати.<br><br>
-      Приклад сповіщення у процесі введення даних:
-      <%= image_tag 'input-data-warning.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-      <br><br>Приклад сповіщення після введення некоретного діапазону значень:
-      <%= image_tag 'input-data-warning-3.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-      <br><br>Приклад сповіщення після зберігання даних:
-      <%= image_tag 'input-data-warning-2.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-      <br><br>Після коректного введення всіх даних, можна перейти до результатів моделювання
-      <%= image_tag 'input-data-3.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %>
-    </h4>
-
-    <hr>
-
-    <h4>Блок <b>Функція щільності ймовірності розподілу</b></h4>
-
-    <hr>
-
-    <h5>У цьому блоці наводиться представлення функції щільності ймовірності в лінійному графіку.<br>
-      Функція щільності ймовірності – це функція, значення якої в будь-якій заданій вибірці (або
-      точці) у просторі вибірки (набір можливих значень, що приймаються випадковою величиною) можна інтерпретувати
-      як
-      таке, що забезпечує відносну ймовірність того, що значення випадкової величини буде близько до цієї
-      вибірки.<br>
-      На рисунку нижче наведений приклад моделювання функції щільності ймовірності на основі наступних даних:</h5>
-    <table border="1" cellpadding="6" cellspacing="0" align="center">
-      <tr>
-        <td>Початок проміжку</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Завершення проміжку</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>Кількість точок</td>
-        <td>200</td>
-      </tr>
-    </table>
-
-    <p><%= image_tag 'pdf-data.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
-    <h5>Варто зауважити, що при наведені курсору на графік моделювання, в правому верзньому куті з'являється кнопка
-      можливості завантажити цей графік, як зображення у форматі png.<br>
-      Також, при спрямування курсору на конкретну точку графіку можна побачити дані про її координати</h5>
-    <p><%= image_tag 'pdf-data-2.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
-
-    <hr>
-
-    <h4>Блок <b>Статистична перевірка випадкових величин</b></h4>
-
-    <hr>
-
-    <h5>У блоці наводиться характерне гістограмне представлення.<br>Звичайно,
-      необхідно навести, що для статистичної перевірки випадкових величин був використаний метод гістограм.<br> Якщо
-      на
-      одному графіку представити означені гістограми,
-      то візуальне порівняння гістограм дозволяє оцінити коректність алгоритмів моделювання випадкової величини (був
-      використаний метод Неймана).<br>
-      Роз'яснення отриманих даних наступне:
-      <ul>
-        <li>Зелена гістограма - апроксимація взаємного розподілу;</li>
-        <li>Синя та фіолетова гістограми одержані моделюванням випадковових значень та розрахунку статистичних оцінок
-          щільності ймовірності.
-        </li>
-      </ul>
-      На рисунку нижче наведений приклад статистичної перевірки випадкових величин на основі наступних даних:
-    </h5>
-    <table border="1" cellpadding="6" cellspacing="0" align="center">
-      <tr>
-        <td>Початок проміжку</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Завершення проміжку</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>Кількість точок</td>
-        <td>200</td>
-      </tr>
-      <tr>
-        <td>Кількість інтервалів розбиття</td>
-        <td>20</td>
-      </tr>
-    </table>
-    <p><%= image_tag 'statistics-1.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
-    <h5>Також можна окремо розглядати конкретну/конкретні гістограми, що наведено нижче:</h5>
-    <p><%= image_tag 'statistics-2.png', width: 1300, height: 300, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
-
-    <hr>
-
-    <h4>Блок <b>Інтегральні характеристики</b></h4>
-
-    <hr>
-
-    <h5> У цьому блоці наведені характерні інтегральні характеристики випадкової величини
-      відповідні теоретичним значенням (зелений стовпчик) і значенням, отриманим в результаті статистичного аналізу
-      результатів розрахунку (синій та фіолетовий стовпчик).
-      На рисунку нижче наведений приклад інтегральних характеристик випадкової величини на основі наступних даних:
-    </h5>
-    <table border="1" cellpadding="6" cellspacing="0" align="center">
-      <tr>
-        <td>Початок проміжку</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Завершення проміжку</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>Кількість точок</td>
-        <td>200</td>
-      </tr>
-      <tr>
-        <td>Кількість інтервалів розбиття</td>
-        <td>20</td>
-      </tr>
-    </table>
-    <p><%= image_tag 'integral-par.png', width: 1300, height: 400, style: "vertical-align:middle; -aw-left-pos:0pt; -aw-rel-hpos:column; -aw-rel-vpos:paragraph; -aw-top-pos:0pt; -aw-wrap-type:inline" %></p>
+          <tr>
+            <td>
+              <%= image_tag 'num_res_eight.png', alt: 'info', width: 800, height: 300, class: 'icon', style: "padding: 10px" %>
+            </td>
+            <td style="text-align: justify; padding: 10px;">
+              <dfn> У цій таблиці наведено показники середнього часу перебування ботів у лабіринті.<br>
+                Всі формули, які були наведені у попередньому блоці, збігаються з цим блоком, окрім формули прорахунку
+                значення для кожного спостереження окремо:
+                <div style="justify-content: center; align-items: center; display: flex;">
+                  <%= image_tag 'formula_one_stay.png', alt: 'info', width: 200, height: 100, class: 'icon', style: "padding: 10px;" %>
+                  ,
+                  <br>
+                </div>
+                де N — загальна кількіть ботів в лабіринті;<br>
+                <div style="margin-left: 32px">
+                  t<sub>i</sub> — час перебування ботів у лабіринті (якщо бот вийшов на 8 секунді, тоді він пробув у лабіринті 7 повних секунд).<br>
+                </div>
+              </dfn>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
     <hr>
 

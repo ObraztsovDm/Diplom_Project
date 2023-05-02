@@ -14,7 +14,6 @@
     </div>
   </div>
 
-
   <div class="content-box">
     <div class="row justify-content-center">
       <div style="align-items: center; justify-content: center; display: flex; transform: scaleX(-1)" class="col-md-2">
@@ -27,30 +26,37 @@
               <div class="form-group row">
                 <label class="col-sm-3 col-form-label text-right" for="active_start">Початок часового проміжку:</label>
                 <div class="col-sm-9">
-                  <%= form.number_field :start, in: 0..30, step: 1, class: "form-control", placeholder: "Введіть значення від 0 до 30", style: "background-color: #F7F8FA; font-family: 'Times New Roman',serif; font-size: 20px" %>
+                  <%= form.number_field :start, in: 0..30, step: 1, class: "form-control", placeholder: "Введіть значення від 0 до 30", style: "background-color: #F7F8FA; font-family: 'Times New Roman',serif; font-size: 20px", required: true %>
                 </div>
               </div>
               <div class="form-group row" style="margin-top: 10px;">
                 <label class="col-sm-3 col-form-label text-right" for="active_end">Завершення часового проміжку:</label>
                 <div class="col-sm-9">
-                  <%= form.number_field :end, in: 0..30, step: 1, class: "form-control", placeholder: "Введіть значення від 0 до 30", style: "background-color: #F7F8FA;font-family: 'Times New Roman',serif; font-size: 20px" %>
+                  <%= form.number_field :end, in: 0..30, step: 1, class: "form-control", placeholder: "Введіть значення від 0 до 30", style: "background-color: #F7F8FA;font-family: 'Times New Roman',serif; font-size: 20px", required: true %>
                 </div>
               </div>
               <div class="form-group row" style="margin-top: 10px;">
                 <label class="col-sm-3 col-form-label text-right" for="active_number_bots">Кількість ботів:</label>
                 <div class="col-sm-9">
-                  <%= form.select :number_bots, [5, 7, 9, 12, 15], {}, class: "form-control", placeholder: "Виберіть один з наведених варіантів", style: "background-color: #F7F8FA; font-family: 'Times New Roman',serif; font-size: 20px" %>
+                  <%= form.select :number_bots, [5, 7, 9, 12, 15], { include_blank: "Виберіть один з наведених варіантів" }, class: "form-control", style: "background-color: #F7F8FA; font-family: 'Times New Roman',serif; font-size: 20px", required: true %>
                 </div>
               </div>
               <div class="form-group row">
-                <label class="col-sm-3 col-form-label text-right" for="active_guess_claster">Ймовірний користувацький
+                <label class="col-sm-3 col-form-label text-right" for="active_guess_claster">Очікуваний користувацький
                   рівень кластеризації:</label>
                 <div class="col-sm-9" style="margin-top: 10px;">
-                  <%= form.number_field :guess_claster, in: 0..100, step: 1, class: "form-control", placeholder: "Виберіть значення від 1 до 100", style: "background-color: #F7F8FA; padding: 10px; font-family: 'Times New Roman',serif; font-size: 20px" %>
+                  <%= form.number_field :guess_claster, in: 0..100, step: 1, class: "form-control", placeholder: "Виберіть значення від 1 до 100", style: "background-color: #F7F8FA; padding: 10px; font-family: 'Times New Roman',serif; font-size: 20px", required: true %>
                 </div>
               </div>
-              <div class="form-group text-center" style="margin-top: 10px;">
-                <%= form.submit "Зберегти", class: "my-button green-button", style: "font-family: 'Times New Roman',serif; font-size: 20px", onclick: "validateForm(event)" %>
+              <div class="input-group-append">
+                <div class="form-group text-center" style="margin-top: 10px;">
+                  <%= form.submit "Зберегти", class: "my-button green-button", style: "font-family: 'Times New Roman',serif; font-size: 20px", onclick: "validateForm(event)" %>
+                  <button type="button" class="my-button clear-button" style="padding: 10px; margin-left: 10px; color: black; font-family: 'Times New Roman',serif; font-size: 20px" onclick="document.getElementById('active_start').value='';
+                    document.getElementById('active_end').value='';
+                    document.getElementById('active_number_bots').value='';
+                    document.getElementById('active_guess_claster').value='';">Очистити
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -64,12 +70,11 @@
 
   <div id="modal" class="modal">
     <div class="modal-content">
-      <h3><b>Помилка</b></h3>
-      <p>Будь ласка, перевірте правильність вхідних даних для всіх полів форми.</p>
-      <button id="close-btn">Закрити</button>
+      <h3><b>Помилка обробки вхідних даних!</b></h3>
+      <p id="error-message"></p>
+      <button id="close-btn"><b>Закрити</b></button>
     </div>
   </div>
-
 
   <script>
       function validateForm(event) {
@@ -83,13 +88,31 @@
           const guess_claster = document.querySelector('#active_guess_claster').value;
 
           // validate input values
-          if (start < 0 || start > 30 || end < 0 || end > 30 || isNaN(number_bots) || guess_claster < 0 || guess_claster > 100) {
+          if (start === "" || end === "" || number_bots === "" || guess_claster === "") {
               // show error message to user
               const modal = document.getElementById('modal');
               modal.style.display = 'block';
-
+              const errorMessage = document.getElementById('error-message');
+              errorMessage.innerHTML = 'Одне або декілька з полів введення порожні.<br>Переконайтеся, що всі поля заповнені і спробуйте ще раз.';
               const closeBtn = document.getElementById('close-btn');
-              closeBtn.onclick = function() {
+              closeBtn.style.backgroundColor = '#FFAB147F';
+              closeBtn.style.color = 'black';
+              closeBtn.onclick = function () {
+                  modal.style.display = 'none';
+              }
+
+              // stop form submission
+              return false;
+          } else if (parseInt(start) >= parseInt(end) || start < 0 || end < 0 || guess_claster < 0 || guess_claster > 100) {
+              // show error message to user
+              const modal = document.getElementById('modal');
+              modal.style.display = 'block';
+              const errorMessage = document.getElementById('error-message');
+              errorMessage.innerHTML = 'Невірний формат даних.<br>Переконайтеся, що всі поля введено згідно з допустимими обмеженнями і спробуйте ще раз.';
+              const closeBtn = document.getElementById('close-btn');
+              closeBtn.style.backgroundColor = '#E42D2D';
+              closeBtn.style.color = 'white';
+              closeBtn.onclick = function () {
                   modal.style.display = 'none';
               }
 
@@ -100,7 +123,16 @@
               document.querySelector('#my-form').submit();
           }
       }
+
+      /*      document.getElementById("start").addEventListener('change', function () {
+                let start = document.getElementById("start");
+                let finish = document.getElementById("end")
+
+                finish.min = +start.value;
+            });*/
+
   </script>
+
 
   <section class="section-input-data">
     <div class="tittle-box">
@@ -182,6 +214,10 @@
 
   <div class="sub-title-box" style="text-align: center; font-family: 'Times New Roman',serif; font-size: 30px;">
     <b>Кластеризація ботів в системі</b>
+    <span class="icon-container">
+                <i class="fas fa-question-circle"></i>
+          <span class="tooltip" style="width: 150px; height: 135px;">Значення кластеризації розраховувалося на основі найбільшого зафіксованого кластеру</span>
+          </span>
   </div>
 
   <hr style="height: 1px; padding: 3px; background: rgba(92, 214, 92, 0.5)">
@@ -220,22 +256,22 @@
 
   <!-- background: rgba(92, 214, 92, 0.5) -->
   <div class="chart-box">
-    <%= line_chart [
-                     {
-                       name: "Кількість ботів, що вийшла з лабіринту (перше спостереження)", type: 'column', data: @maze_exit_bots.dig(:first_observation)
-                     },
-                     {
-                       name: "Кількість ботів, що вийшла з лабіринту (друге спостереження)", type: 'column', data: @maze_exit_bots.dig(:second_observation)
-                     },
-                     {
-                       name: "Кількість ботів, що вийшла з лабіринту (третє спостереження)", type: 'column', data: @maze_exit_bots.dig(:third_observation)
-                     }
-                   ],
-                   title: "Спостереження за виходом ботів з лабіринту",
-                   colors: ['blue', 'green', 'orange'],
-                   xtitle: "Час",
-                   ytitle: "Боти",
-                   download: { background: "#ffffff" }
+    <%= column_chart [
+                       {
+                         name: "Кількість ботів, що вийшла з лабіринту (перше спостереження)", type: 'column', data: @maze_exit_bots.dig(:first_observation)
+                       },
+                       {
+                         name: "Кількість ботів, що вийшла з лабіринту (друге спостереження)", type: 'column', data: @maze_exit_bots.dig(:second_observation)
+                       },
+                       {
+                         name: "Кількість ботів, що вийшла з лабіринту (третє спостереження)", type: 'column', data: @maze_exit_bots.dig(:third_observation)
+                       }
+                     ],
+                     title: "Спостереження за виходом ботів з лабіринту",
+                     colors: ['blue', 'green', 'orange'],
+                     xtitle: "Час",
+                     ytitle: "Боти",
+                     download: { background: "#ffffff" }
     %>
   </div>
 
@@ -295,208 +331,6 @@
       });
   </script>
 
-  <section class="section-input-data">
-    <div class="tittle-box">
-      <div class="section-title" style="color: white">
-        <b>Числові характеристики кластеризації</b>
-        <div style="padding: 10px">
-          <%= image_tag 'small_clock.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div style="padding: 10px;  background: #ffffff">
-    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
-      <thead>
-      <tr style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 30px;">
-        <td style="padding: 50px; background: #ffffff">&nbsp;</td>
-        <td style="text-align: center; padding: 50px;"><b>Трикутна арена</b></td>
-        <td style="text-align: center; padding: 50px;"><b>Прямокутна арена</b></td>
-        <td style="padding: 50px;"><b>Кругла арена</b></td>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr>
-        <td style="padding: 10px;"><b>Фактичний коефіцієнт кластеризації кожної арени</b></td>
-        <td style="padding: 10px; background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_triangle %>
-          %
-        </td>
-        <td style="padding: 10px; background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_square %>
-          %
-        </td>
-        <td style="padding: 10px; background: rgba(193, 74, 193, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_circle %>
-          %
-        </td>
-      </tr>
-      <tr>
-        <td style="padding: 10px;"><b>Середня кластеризація</b></td>
-        <td colspan="3" style="padding: 10px; background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_middle %>
-          %
-        </td>
-      </tr>
-      <tr>
-        <td style="padding: 10px;"><b>Користувацький коефіцієнт кластеризації</b></td>
-        <% diff = (@real_cluster_middle - @user_cluster).abs %>
-        <% color = if diff >= 50.0
-                     "#FFABAF"
-                   elsif diff >= 30.0
-                     "#FFEBAF"
-                   elsif diff >= 0.0
-                     "#ADEAAD"
-                   else
-                     ""
-                   end %>
-        <td colspan="3" style="padding: 10px; background: <%= color %>; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @user_cluster %>
-          %
-        </td>
-      </tr>
-
-      </tbody>
-    </table>
-  </div>
-
-
-  <section class="section-input-data">
-    <div class="tittle-box">
-      <div class="section-title" style="color: white;">
-        <b>Числові характеристики результатів для лабіринту</b>
-        <div style="padding: 10px">
-          <%= image_tag 'maze.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr>
-
-  <div style="padding: 10px; background: #ffffff">
-    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
-      <thead>
-
-      <tr style="background: #F5F5F5;">
-        <th colspan="4" style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">Арена
-          лабіринту
-        </th>
-      </tr>
-
-      </thead>
-
-      <tr>
-        <td style="padding: 40px">&nbsp;</td>
-        <td style="background: rgba(91, 157, 231, 0.5); text-align: center;  font-family: 'Times New Roman',serif; font-size: 27px;">
-          <b>Перше спостереження</b>
-        </td>
-        <td style="background: rgba(92, 214, 92, 0.5); text-align: center; font-family: 'Times New Roman',serif; font-size: 27px;">
-          <b>Друге спостереження</b>
-        </td>
-        <td style="background: rgba(255, 165, 0, 0.5); text-align: center;  font-family: 'Times New Roman',serif; font-size: 27px;">
-          <b>Третє спостереження</b>
-        </td>
-      </tr>
-
-
-      <tr>
-        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
-          виходу першого боту з лабіринту
-        </th>
-      </tr>
-
-      <tr>
-        <td><b>Час виходу першого боту</b></td>
-        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[0] %>
-          с.
-        </td>
-        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[1] %>
-          с.
-        </td>
-        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[2] %>
-          с.
-        </td>
-      </tr>
-
-      <tr>
-        <td><b>Середній час виходу першого боту</b></td>
-        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_time_maze_out %>
-          с.
-        </td>
-      </tr>
-
-      <tr>
-        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
-          середнього часу виходу ботів з лабіринту
-        </th>
-      </tr>
-
-      <tr>
-        <td><b>Середній час виходу ботів з лабіринту</b></td>
-        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[0] %>
-          с.
-        </td>
-        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[1] %>
-          с.
-        </td>
-        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[2] %>
-          с.
-        </td>
-      </tr>
-
-      <tr>
-        <td><b>Середній час виходу ботів з лабіринту на основі всіх спостережень</b></td>
-        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_result_observations.round(5) %>
-          с.
-        </td>
-      </tr>
-
-      <tr>
-        <td><b>Відхилення від середнього значення</b></td>
-        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation[0] %>
-          с.
-        </td>
-        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation[1] %>
-          с.
-        </td>
-        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation[2] %>
-          с.
-        </td>
-      </tr>
-
-      <tr>
-        <td><b>Середнє квадратичне відхилення</b></td>
-        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @mean_square_deviation.round(5) %>
-        </td>
-      </tr>
-
-      <tr>
-        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
-          середнього часу перебування в лабіринті
-        </th>
-      </tr>
-
-      <tr>
-        <td><b>Середній час перебування ботів в лабіринті</b></td>
-        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @time_observation_stay[0] %>
-          с.
-        </td>
-        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @time_observation_stay[1] %>
-          с.
-        </td>
-        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @time_observation_stay[2] %>
-          с.
-        </td>
-      </tr>
-
-      <tr>
-        <td><b>Середній час перебування ботів в лабіринті на основі всіх спостережень</b></td>
-        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_time_maze_stay.round(5) %>
-          с.
-        </td>
-      </tr>
-
-    </table>
-  </div>
-
   <hr>
 
   <button id="back-to-top">Button up</button>
@@ -508,7 +342,7 @@
       scrollButton.innerHTML = '<%= image_tag "arrow_up_mod.png", width: "100", height: "100" %>';
       document.body.appendChild(scrollButton);
 
-      let scrollPositionToShowButton = 2900;
+      let scrollPositionToShowButton = 1300;
 
       window.addEventListener('scroll', function () {
           let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
@@ -535,15 +369,4 @@
           });
       });
   </script>
-
-
 </div>
-
-<script>
-    document.getElementById("start").addEventListener('change', function () {
-        let start = document.getElementById("start");
-        let finish = document.getElementById("end")
-
-        finish.min = +start.value;
-    });
-</script>

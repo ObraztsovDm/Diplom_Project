@@ -1,80 +1,127 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="application.css">
 
-<div class="container">
-  <div style="text-align: center; font-family: 'Times New Roman',serif; font-size: 20px">
-    <h1><%= @heading %></h1>
+<p style="color: green"><%= notice %></p>
+<div style="font-family: 'Times New Roman',serif; font-size: 20px">
+  <div class="tittle-box">
+    <div class="container">
+      <div class="section-title" style="color: white">
+        <b><%= @heading %></b>
+        <div style="padding: 10px">
+          <%= image_tag 'person.png', alt: 'Book one input data', width: 50, height: 50, class: 'icon' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
 
-    <hr>
+  <div class="content-box">
+<!--    <div class="container" style="text-align: center;">
 
-    <h5>Виконавцем наведеної роботи є студент групи КС43 – Образцов Дмитро.</h5>
-    <%= image_tag 'photo.png', :class => "image_photo", style: "float: center;" %>
+      <h5 style="padding: 10px"><b>Виконавцем наведеної роботи є студент групи КС43 – Образцов Дмитро.</b></h5>
+      <%#= image_tag 'photo.png', :class => "image_photo", style: "float: center;" %>
 
-    <br><br>
+      <br><br>
+    </div>-->
 
-    <style>
-        table {
-            border-collapse: collapse;
-            margin: 0 auto;
-            max-width: 900px;
-            width: 100%;
-        }
+    <div class="row" style="padding: 100px;">
+      <div class="col-md-7 mx-auto text-center" style="position: relative; width: 800px; height: 600px;">
+        <%= image_tag 'maze_about_us.png', width: 650, height: 600, style: "position: absolute; top: 0; left: 0; z-index: 1;" %>
+        <%= image_tag 'bot_picture_not_cut.png', width: 300, height: 200, style: "position: absolute; bottom: 80px; right: -80px; z-index: 2;" %>
+        <%= image_tag 'first_bot.png', width: 300, height: 200, style: "position: absolute; bottom: 300px; right: -80px; z-index: 2;" %>
+      </div>
+      <style>
+          .text-main {
+              font-family: 'Open Sans', sans-serif;
+              font-size: 40px;
+              font-weight: bold;
+              font-style: italic;
+              color: #333;
+          }
+      </style>
+      <div class="col-md-5 text-center">
+        <p class="text-main">Дослідження активної матерії</p>
+        <div style="text-align: justify;">
+          <p style="max-width: 600px; margin: 0 auto; text-align: justify">Ми — команда дослідників, що займається вивченням
+            активної матерії. Наша пристрасть полягає в розумінні та аналізу поведінки систем активної матерії.
+            <br><br>
+            Наші дослідження передбачають створення штучних замкнутих систем активної матерії, де ми спостерігаємо і вивчаємо поведінку систему.
+            Завдяки нашій роботі з’являється можливість аналізувати різні системи активної матерії спираючись на дані, які були отримані з наших досліджень.
+            <br><br>
+            Ми пишаємося тим, що проводимо власні експерименти і розширюємо знання в галузі активних матерій.
+            <br><br>
+            Дякуємо, що знайшли час, щоб дізнатися більше про нас.</p>
+        </div>
+      </div>
+    </div>
 
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
+    <!--    <div class="container" style="text-align: center;">
+      <style>
+          table {
+              border-collapse: collapse;
+              margin: 0 auto;
+              max-width: 900px;
+              width: 100%;
+          }
 
-        td {
-            background-color: #fff;
-        }
+          th {
+              background-color: #f2f2f2;
+              font-weight: bold;
+          }
 
-        tr:nth-child(even) td {
-            background-color: #f2f2f2;
-        }
+          td {
+              background-color: #fff;
+          }
 
-        .email-column {
-            width: 40%;
-        }
+          tr:nth-child(even) td {
+              background-color: #f2f2f2;
+          }
 
-        .phone-column {
-            width: 60%;
-        }
+          .email-column {
+              width: 40%;
+          }
 
-        /* Optional hover effect on rows */
-        tr:hover {
-            background-color: #e2e2e2;
-            cursor: pointer;
-        }
-    </style>
+          .phone-column {
+              width: 60%;
+          }
 
-    <h5><b>Контактна інформація</b></h5>
+          /* Optional hover effect on rows */
+          tr:hover {
+              background-color: #e2e2e2;
+              cursor: pointer;
+          }
+      </style>
 
-    <table>
-      <thead>
-      <tr>
-        <th class="email-column">Email</th>
-        <th class="phone-column">Номер телефону</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <%= image_tag 'gmail.png', :class => "rounded-image" %><br>xa12850498@student.karazin.ua
-        </td>
-        <td>(+380) 66-122-0753</td>
-      </tr>
-      <tr>
-        <td>
-          <%= image_tag 'gmail.png', :class => "rounded-image" %><br>obraztsov.dmytro@gmail.com.
-        </td>
-        <td>(+380) 50-572-8233</td>
-      </tr>
-      </tbody>
-    </table>
 
-    <dfn>Завжди відкритий до продуктивної співпраці!</dfn>
+      <table>
+        <thead>
+        <tr>
+          <th colspan="2" style="padding: 10px; background: #6174af; color: white;">Контактна інформація</th>
+        </tr>
+        <tr>
+          <th class="email-column">Email</th>
+          <th class="phone-column">Номер телефону</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <%#= image_tag 'gmail.png', :class => "rounded-image" %><br>xa12850498@student.karazin.ua
+          </td>
+          <td>(+380) 66-122-0753</td>
+        </tr>
+        <tr>
+          <td>
+            <%#= image_tag 'gmail.png', :class => "rounded-image" %><br>obraztsov.dmytro@gmail.com.
+          </td>
+          <td>(+380) 50-572-8233</td>
+        </tr>
+        </tbody>
+      </table>
 
-    <hr>
+      <dfn><b>Завжди готовий до продуктивної співпраці!</b></dfn>
+
+      <hr>
+    </div>-->
   </div>
 </div>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="application.css">
+
+<p style="color: green"><%= notice %></p>
+<div style="font-family: 'Times New Roman',serif; font-size: 20px">
+  <section class="section-input-data">
+    <div class="tittle-box">
+      <div class="section-title" style="color: white">
+        <b>Числові характеристики кластеризації системи</b>
+        <div style="padding: 10px">
+          <%= image_tag 'small_clock.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="padding: 10px;  background: #ffffff">
+    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
+      <thead>
+      <tr style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 30px;">
+        <!--<td style="padding: 50px; background: #ffffff">&nbsp;</td>-->
+        <td style="padding: 10px;">
+          <span class="icon-container">
+                <i class="fas fa-question-circle"></i>
+          <span class="tooltip" style="width: 150px; height: 175px;">Відсоткове значення кластеризації розраховувалося на основі найбільшого зафіксованого кластеру на заданому часовому проміжку (з <%= @active.start %>
+            с. до <%= @active.end %> с.)</span>
+          </span>
+        </td>
+        <td style="text-align: center; "><b>Трикутна арена</b></td>
+        <td style="text-align: center; "><b>Прямокутна арена</b></td>
+        <td style="text-align: center; "><b>Кругла арена</b></td>
+        <td style="text-align: center; "><b>Лабіринт</b></td>
+      </tr>
+
+      </thead>
+
+      <tbody>
+      <tr>
+        <td style="padding: 10px;"><b>Відсоток максимальної кластеризації системи на кожній арені</b></td>
+        <td style="padding: 10px; background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_triangle %>
+          %
+        </td>
+        <td style="padding: 10px; background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_square %>
+          %
+        </td>
+        <td style="padding: 10px; background: rgba(193, 74, 193, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_circle %>
+          %
+        </td>
+        <td style="padding: 10px; background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_maze %>
+          %
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;"><b>Середня кластеризація</b></td>
+        <td colspan="4" style="padding: 10px; background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @real_cluster_middle %>
+          %
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;"><b>Користувацький відсоток кластеризації</b></td>
+        <% diff = (@real_cluster_middle - @active.guess_claster.to_f).abs %>
+        <% color = if diff >= 50.0
+                     "#FFABAF"
+                   elsif diff >= 30.0
+                     "#FFEBAF"
+                   elsif diff >= 0.0
+                     "#ADEAAD"
+                   else
+                     ""
+                   end %>
+        <td colspan="4" style="padding: 10px; background: <%= color %>; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @active.guess_claster.to_f %>
+          %
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <section class="section-input-data">
+    <div class="tittle-box">
+      <div class="section-title" style="color: white;">
+        <b>Числові характеристики дослідження лабіринту</b>
+        <div style="padding: 10px">
+          <%= image_tag 'maze.png', alt: 'Book one input data', width: 55, height: 50, class: 'icon' %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <div style="padding: 10px; background: #ffffff">
+    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
+      <thead>
+
+      <tr style="background: #F5F5F5;">
+        <th colspan="4" style="text-align: center; padding: 50px; font-family: 'Times New Roman',serif; font-size: 30px;">Арена
+          лабіринту
+        </th>
+      </tr>
+
+      </thead>
+
+      <tr>
+        <td style="padding: 40px; background: #F5F5F5;">
+          <!--&nbsp;-->
+          <span class="icon-container">
+            <i class="fas fa-question-circle"></i>
+              <span class="tooltip" style="height: 50px; width: 170px;">Обраний часовий проміжок: з <%= @active.start %>
+                с. до <%= @active.end %> с.</span>
+          </span>
+        </td>
+        <td style="background: rgba(91, 157, 231, 0.5); text-align: center;  font-family: 'Times New Roman',serif; font-size: 27px;">
+          <b>Перше спостереження</b>
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); text-align: center; font-family: 'Times New Roman',serif; font-size: 27px;">
+          <b>Друге спостереження</b>
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); text-align: center;  font-family: 'Times New Roman',serif; font-size: 27px;">
+          <b>Третє спостереження</b>
+        </td>
+      </tr>
+
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
+          виходу першого боту з лабіринту
+        </th>
+      </tr>
+
+      <!--<td><b>Час виходу першого(-их) боту(-ів) для проміжку ( з <%#= @active.start %> с. до <%#= @active.end %> с.)</b>-->
+
+      <tr>
+        <td><b>Час виходу першого(-их) боту(-ів)</b>
+        </td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[0] %>
+          с.
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[1] %>
+          с.
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_maze_out_first[2] %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє значення</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_time_maze_out %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
+          середнього часу виходу ботів з лабіринту
+        </th>
+      </tr>
+
+      <tr>
+        <td><b>Середній час виходу ботів з лабіринту</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[0].round(5) %>
+          с.
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[1].round(5) %>
+          с.
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_out_time[2].round(5) %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середній час виходу ботів з лабіринту на основі всіх спостережень</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_result_observ_exit.round(5) %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Відхилення від середнього значення</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_exit[0] %>
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_exit[1] %>
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_exit[2] %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє квадратичне відхилення</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @mean_square_deviation_exit.round(5) %>
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
+          середнього часу перебування в лабіринті
+        </th>
+      </tr>
+
+      <tr>
+        <td><b>Середній час перебування ботів в лабіринті</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_stay_time[0].round(5) %>
+          с.
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_stay_time[1].round(5) %>
+          с.
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @observation_bots_stay_time[2].round(5) %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середній час перебування ботів в лабіринті на основі всіх спостережень</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_result_observ_stay.round(5) %>
+          с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Відхилення від середнього значення</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_stay[0] %>
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_stay[1] %>
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_stay[2] %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє квадратичне відхилення</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @mean_square_deviation_stay.round(5) %>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+  <button id="back-to-top">Button up</button>
+
+  <script>
+      let backToTopButton = document.querySelector("#back-to-top");
+      let scrollButton = document.createElement("div");
+      scrollButton.setAttribute("id", "scroll-to-top");
+      scrollButton.innerHTML = '<%= image_tag "arrow_up_mod.png", width: "100", height: "100" %>';
+      document.body.appendChild(scrollButton);
+
+      let scrollPositionToShowButton = 1500;
+
+      window.addEventListener('scroll', function () {
+          let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+          let windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+          if (scrollPosition > scrollPositionToShowButton) {
+              document.getElementById('scroll-to-top').classList.add('show');
+          } else {
+              document.getElementById('scroll-to-top').classList.remove('show');
+          }
+      });
+
+      backToTopButton.addEventListener("click", function () {
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
+      });
+
+      scrollButton.addEventListener("click", function () {
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
+      });
+  </script>
+</div>

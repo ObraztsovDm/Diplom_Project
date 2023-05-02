@@ -44,8 +44,8 @@ td {
 
 .image_photo {
     border-radius: 50%;
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
 }
 
@@ -139,6 +139,9 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+.clear-button {
+    background: #F5F5F5
+}
 
 .green-button {
     background-color: #539165;
@@ -150,6 +153,10 @@ body {
 
 .yellow-button {
     background-color: #F7C04A;
+}
+
+.orange-button {
+    background-color: #E86A33;
 }
 
 .white-button {
@@ -281,4 +288,38 @@ a:hover {
     cursor: pointer;
 }
 
+/* Info icon */
+.icon-container {
+    position: relative;
+    display: inline-block;
+}
 
+.tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    background-color: #555;
+    color: #fff;
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.icon-container:hover .tooltip {
+    opacity: 1;
+}
