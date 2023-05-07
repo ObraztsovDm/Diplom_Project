@@ -103,7 +103,7 @@
 
               // stop form submission
               return false;
-          } else if (parseInt(start) >= parseInt(end) || start < 0 || end < 0 || guess_claster < 0 || guess_claster > 100) {
+          } else if (parseInt(start) >= parseInt(end) || start < 0 || end < 0 || guess_claster < 0 || guess_claster > 100 || start > 30 || end > 30) {
               // show error message to user
               const modal = document.getElementById('modal');
               modal.style.display = 'block';

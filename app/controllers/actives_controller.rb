@@ -70,6 +70,7 @@ class ActivesController < ApplicationController
       @observation_maze_out_first << time_bots_maze_out(number_exit_bots.dig(number_bots)[i]).dig(:result_mas)[0]
     }
 =end
+
   end
 
   # GET /actives/1 or /actives/1.json

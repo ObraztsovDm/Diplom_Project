@@ -84,7 +84,7 @@ module CalculationModule
     previous_value = nil
 
     if mas[start] > 0
-      result << start + 1
+      result += [start] * mas[start]
     end
 
     (start).step(finish - 1) do |i|
@@ -120,7 +120,7 @@ module CalculationModule
   end
 =end
 
-  # гістогранме представлення у відсотках + кластеризація лабіринту
+  # гістогранме представлення у відсотках
   def percentage_histogram_maze(number_bots)
     averages = []
     average_clust = []
@@ -190,7 +190,7 @@ module CalculationModule
     previous_value = nil
 
     if mas[start] > 0
-      result << start + 1
+      result += [start + 1] * mas[start]
     end
 
     (start).step(finish - 1) do |i|
