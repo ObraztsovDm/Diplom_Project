@@ -7,7 +7,7 @@ include CalculationModule
 
 module VisualizationModule
 
-  def visual_cluster_data(start, finish, number_bots)
+  def visual_cluster_data(number_bots, start, finish)
     cluster_circle = active_cluster_circle
     cluster_square = active_cluster_square
     cluster_triangle = active_cluster_triangle
@@ -22,6 +22,7 @@ module VisualizationModule
     mas_for_clust_square = []
     mas_for_clust_triangle = []
     mas_for_clust_maze = []
+    result_dev = []
 
     (start + 1).step(finish, step) do |i|
       mas_for_clust_circle << cluster_circle.dig(number_bots)[i - 1]
@@ -34,7 +35,17 @@ module VisualizationModule
       result_triangle << ["#{i - step} - #{i}", cluster_triangle.dig(number_bots)[i - 1]]
       result_maze << ["#{i - step} - #{i}", clasterization_maze(number_bots)[i - 1].round(4)]
     end
+    circle = calculation_clasterization(number_bots, mas_for_clust_circle)
+    square = calculation_clasterization(number_bots, mas_for_clust_square)
+    triangle = calculation_clasterization(number_bots, mas_for_clust_triangle)
+    maze = calculation_clasterization(number_bots, mas_for_clust_maze)
 
+    average = (circle + square + triangle + maze) / 4.0
+
+    result_dev.push((average - triangle).abs.round(5), (average - square).abs.round(5), (average - circle).abs.round(5), (average - maze).abs.round(5))
+
+    result_sum_deviation = result_dev.map { |elem| elem ** 2 }.sum
+    mean_square_deviation = Math.sqrt(result_sum_deviation / 4.0)
     {
       :visual_result_circle => result_circle,
       :visual_result_square => result_square,
@@ -43,11 +54,14 @@ module VisualizationModule
       :area_cluster_circle => mas_for_clust_circle,
       :area_cluster_square => mas_for_clust_square,
       :area_cluster_triangle => mas_for_clust_triangle,
-      :area_cluster_maze => mas_for_clust_maze
+      :area_cluster_maze => mas_for_clust_maze,
+      :average_result_observations => average.round(5),
+      :result_deviation => result_dev,
+      :mean_square_deviation => mean_square_deviation.round(5)
     }
   end
 
-  def visual_out_maze(start, finish, number_bots)
+  def visual_out_maze(number_bots, start, finish)
     exit_bots = number_exit_bots
     step = 1
     result_first_observation = []
@@ -90,5 +104,108 @@ module VisualizationModule
       :twelve_bots => result_12_bots,
       :fifteen_bots => result_15_bots
     }
+  end
+
+  def chart_error(start, finish, function)
+    bots_variations = [5, 7, 9, 12, 15]
+    result = bots_variations.each_with_object(Hash.new { |h, k| h[k] = [] }) do |bots, hash|
+      if function == "exit"
+        temp = res_observation_deviation_mean(bots, start, finish, "exit")
+      elsif function == "stay"
+        temp = res_observation_deviation_mean(bots, start, finish, "stay")
+      elsif function == "count_out"
+        temp = count_bots_maze_out_obs(bots, finish)
+      elsif function == "first_out"
+        temp = first_bot_maze_out(bots, start, finish)
+      end
+      avg_obs, msd = temp.values_at(:average_result_observations, :mean_square_deviation)
+      hash[bots] << [bots, (avg_obs + msd / 2).round(5)]
+      hash[bots] << [bots, avg_obs.round(5)]
+      hash[bots] << [bots, (avg_obs - msd / 2).round(5)]
+    end
+
+    result.transform_keys! do |bots|
+      case bots
+      when 5 then :five_bots
+      when 7 then :seven_bots
+      when 9 then :nine_bots
+      when 12 then :twelve_bots
+      when 15 then :fifteen_bots
+      else
+        nil
+      end
+    end
+  end
+
+  # візуалізація для кластеризації (графік з полосою похибки)
+  # old
+=begin
+  def chart_error_clast(start, finish)
+    bots_variations = [5, 7, 9, 12, 15]
+    area_variations = [0, 1, 2, 3]
+    result = []
+    circle = []
+    square = []
+    triangle = []
+    maze = []
+
+    (bots_variations).each do |bots|
+      area_variations.each do |areas|
+        temp = visual_cluster_data(bots, start, finish)
+        avg_obs, msd = temp.values_at(:average_result_observations, :mean_square_deviation)
+        result.push([[areas, (avg_obs + msd / 2).round(5)], [areas, avg_obs.round(5)], [areas, (avg_obs - msd / 2).round(5)]])
+      end
+    end
+
+    (result).each do |i|
+      if i[0][0] == area_variations[0]
+        circle << i
+      elsif i[0][0] == area_variations[1]
+        square << i
+      elsif i[0][0] == area_variations[2]
+        triangle << i
+      elsif i[0][0] == area_variations[3]
+        maze << i
+      end
+    end
+    result_5_bots = []
+    result_7_bots = []
+    result_9_bots = []
+    result_12_bots = []
+    result_15_bots = []
+
+    result_5_bots.push(circle[0], square[0], triangle[0], maze[0])
+    result_7_bots.push(circle[1], square[1], triangle[1], maze[1])
+    result_9_bots.push(circle[2], square[2], triangle[2], maze[2])
+    result_12_bots.push(circle[3], square[3], triangle[3], maze[3])
+    result_15_bots.push(circle[3], square[3], triangle[3], maze[3])
+
+    {
+      :circle => circle,
+      :square => square,
+      :triangle => triangle,
+      :maze => maze,
+      5 => result_5_bots,
+      7 => result_7_bots,
+      9 => result_9_bots,
+      12 => result_12_bots,
+      15 => result_15_bots
+    }
+  end
+=end
+
+  # new
+  def chart_error_clast(start, finish)
+    bots_variations = [5, 7, 9, 12, 15]
+    result = []
+
+    bots_variations.each do |bots|
+      temp = visual_cluster_data(bots, start, finish)
+      avg_obs, msd = temp.values_at(:average_result_observations, :mean_square_deviation)
+      content = [[bots, (avg_obs + msd / 2).round(5)], [bots, avg_obs.round(5)], [bots, (avg_obs - msd / 2).round(5)]]
+      result.push(content)
+    end
+
+    result
   end
 end

@@ -14,7 +14,7 @@
     </div>
   </section>
 
-  <div style="padding: 10px;  background: #ffffff">
+  <div style="background: #ffffff">
     <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
       <thead>
       <tr style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 30px;">
@@ -22,8 +22,8 @@
         <td style="padding: 10px;">
           <span class="icon-container">
                 <i class="fas fa-question-circle"></i>
-          <span class="tooltip" style="width: 150px; height: 175px;">Відсоткове значення кластеризації розраховувалося на основі найбільшого зафіксованого кластеру на заданому часовому проміжку (з <%= @active.start %>
-            с. до <%= @active.end %> с.)</span>
+          <span class="tooltip" style="width: 150px; height: 215px;">Відсоткове значення кластеризації розраховувалося на основі найбільшого зафіксованого кластеру на заданому часовому проміжку (з <%= @active.start %>
+            с. до <%= @active.end %> с.)<br>Обрана кількість ботів: <%= @active.number_bots %></span>
           </span>
         </td>
         <td style="text-align: center; "><b>Трикутна арена</b></td>
@@ -73,10 +73,65 @@
         </td>
       </tr>
 
+      <tr>
+        <td><b>Відхилення від середнього значення</b></td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_clast[0] %>
+        </td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_clast[1] %>
+        </td>
+        <td style="background: rgba(193, 74, 193, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_clast[2] %>
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_clast[3] %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє квадратичне відхилення</b></td>
+        <td colspan="4" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @mean_square_deviation_clast.round(5) %>
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="5" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Графік
+          з полосою похибки для всіх систем
+        </th>
+      </tr>
+
+      <tr>
+        <td colspan="5">
+          <div class="chart-box">
+            <%= line_chart [
+                             {
+                               name: "Система з 5-ох ботів", data: @chart_error_all_system_clast[0]
+                             },
+                             {
+                               name: "Система з 7-ох ботів", data: @chart_error_all_system_clast[1]
+                             },
+                             {
+                               name: "Система з 9-ох ботів", data: @chart_error_all_system_clast[2]
+                             },
+                             {
+                               name: "Система з 12-ох ботів", data: @chart_error_all_system_clast[3]
+                             },
+                             {
+                               name: "Система з 15-ох ботів", data: @chart_error_all_system_clast[4]
+                             }
+                           ],
+                           title: "Графік з полосою похибки для серелнього відсотку кластеризації систем",
+                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           xtitle: "Боти",
+                           ytitle: "Час виходу",
+                           library: { hAxis: { textPosition: 'none' } },
+                           download: { background: "#ffffff" }
+            %>
+          </div>
+        </td>
+      </tr>
+
+
       </tbody>
     </table>
   </div>
-
 
   <section class="section-input-data">
     <div class="tittle-box">
@@ -91,7 +146,7 @@
 
   <hr>
 
-  <div style="padding: 10px; background: #ffffff">
+  <div style=" background: #ffffff">
     <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman',serif; font-size: 25px; text-align: center">
       <thead>
 
@@ -108,8 +163,8 @@
           <!--&nbsp;-->
           <span class="icon-container">
             <i class="fas fa-question-circle"></i>
-              <span class="tooltip" style="height: 50px; width: 170px;">Обраний часовий проміжок: з <%= @active.start %>
-                с. до <%= @active.end %> с.</span>
+              <span class="tooltip" style="height: 70px; width: 175px;">Обраний часовий проміжок: з <%= @active.start %>
+                с. до <%= @active.end %> с.<br>Обрана кількість ботів: <%= @active.number_bots %></span>
           </span>
         </td>
         <td style="background: rgba(91, 157, 231, 0.5); text-align: center;  font-family: 'Times New Roman',serif; font-size: 27px;">
@@ -148,8 +203,138 @@
 
       <tr>
         <td><b>Середнє значення</b></td>
-        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_time_maze_out %>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_time_maze_out_first %>
           с.
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Відхилення від середнього значення</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_first[0] %>
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_first[1] %>
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_first[2] %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє квадратичне відхилення</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @mean_square_deviation_first.round(5) %>
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Графік
+          з полосою похибки для всіх систем
+        </th>
+      </tr>
+
+      <tr>
+        <td colspan="4">
+          <div class="chart-box">
+            <%= line_chart [
+                             {
+                               name: "Система з 5-ох ботів", data: @chart_error_all_system_first.dig(:five_bots)
+                             },
+                             {
+                               name: "Система з 7-ох ботів", data: @chart_error_all_system_first.dig(:seven_bots)
+                             },
+                             {
+                               name: "Система з 9-ох ботів", data: @chart_error_all_system_first.dig(:nine_bots)
+                             },
+                             {
+                               name: "Система з 12-ох ботів", data: @chart_error_all_system_first.dig(:twelve_bots)
+                             },
+                             {
+                               name: "Система з 15-ох ботів", data: @chart_error_all_system_first.dig(:fifteen_bots)
+                             }
+                           ],
+                           title: "Графік з полосою похибки для часу виходу першого боту з лабіринту",
+                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           xtitle: "Боти",
+                           ytitle: "Час виходу",
+                           download: { background: "#ffffff" }
+            %>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
+          середньої кількості ботів, що вийшли
+        </th>
+      </tr>
+
+      <tr>
+        <td><b>Середній відсоток кількість ботів, що вийшли</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_all_obs_count[0] %>
+          %
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_all_obs_count[1] %>
+          %
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_all_obs_count[2] %>
+          %
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє значення відсотку ботів, що вийшли</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_result_observ_count %>
+          %
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Відхилення від середнього значення</b></td>
+        <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_count[0] %>
+        </td>
+        <td style="background: rgba(92, 214, 92, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_count[1] %>
+        </td>
+        <td style="background: rgba(255, 165, 0, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_deviation_count[2] %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Середнє квадратичне відхилення</b></td>
+        <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @mean_square_deviation_count.round(5) %>
+        </td>
+      </tr>
+
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Графік
+          з полосою похибки для всіх систем
+        </th>
+      </tr>
+
+      <tr>
+        <td colspan="4">
+          <div class="chart-box">
+            <%= line_chart [
+                             {
+                               name: "Система з 5-ох ботів", data: @chart_error_all_system_count.dig(:five_bots)
+                             },
+                             {
+                               name: "Система з 7-ох ботів", data: @chart_error_all_system_count.dig(:seven_bots)
+                             },
+                             {
+                               name: "Система з 9-ох ботів", data: @chart_error_all_system_count.dig(:nine_bots)
+                             },
+                             {
+                               name: "Система з 12-ох ботів", data: @chart_error_all_system_count.dig(:twelve_bots)
+                             },
+                             {
+                               name: "Система з 15-ох ботів", data: @chart_error_all_system_count.dig(:fifteen_bots)
+                             }
+                           ],
+                           title: "Графік з полосою похибки для середньої кількості ботів, що вийшли з лабіринту",
+                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           xtitle: "Боти",
+                           ytitle: "Час виходу",
+                           download: { background: "#ffffff" }
+            %>
+          </div>
         </td>
       </tr>
 
@@ -196,6 +381,42 @@
       </tr>
 
       <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Графік
+          з полосою похибки для всіх систем
+        </th>
+      </tr>
+
+      <tr>
+        <td colspan="4">
+          <div class="chart-box">
+            <%= line_chart [
+                             {
+                               name: "Система з 5-ох ботів", data: @chart_error_all_system_exit.dig(:five_bots)
+                             },
+                             {
+                               name: "Система з 7-ох ботів", data: @chart_error_all_system_exit.dig(:seven_bots)
+                             },
+                             {
+                               name: "Система з 9-ох ботів", data: @chart_error_all_system_exit.dig(:nine_bots)
+                             },
+                             {
+                               name: "Система з 12-ох ботів", data: @chart_error_all_system_exit.dig(:twelve_bots)
+                             },
+                             {
+                               name: "Система з 15-ох ботів", data: @chart_error_all_system_exit.dig(:fifteen_bots)
+                             }
+                           ],
+                           title: "Графік з полосою похибки для середнього часу виходу ботів з лабіринту",
+                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           xtitle: "Боти",
+                           ytitle: "Час виходу",
+                           download: { background: "#ffffff" }
+            %>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
         <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
           середнього часу перебування в лабіринті
         </th>
@@ -237,6 +458,41 @@
         </td>
       </tr>
 
+      <tr>
+        <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Графік
+          з полосою похибки для всіх систем
+        </th>
+      </tr>
+
+      <tr>
+        <td colspan="4">
+          <div class="chart-box">
+            <%= line_chart [
+                             {
+                               name: "Система з 5-ох ботів", data: @chart_error_all_system_stay.dig(:five_bots)
+                             },
+                             {
+                               name: "Система з 7-ох ботів", data: @chart_error_all_system_stay.dig(:seven_bots)
+                             },
+                             {
+                               name: "Система з 9-ох ботів", data: @chart_error_all_system_stay.dig(:nine_bots)
+                             },
+                             {
+                               name: "Система з 12-ох ботів", data: @chart_error_all_system_stay.dig(:twelve_bots)
+                             },
+                             {
+                               name: "Система з 15-ох ботів", data: @chart_error_all_system_stay.dig(:fifteen_bots)
+                             }
+                           ],
+                           title: "Графік з полосою похибки для середнього часу перебування ботів у лабіринті",
+                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           xtitle: "Боти",
+                           ytitle: "Час виходу",
+                           download: { background: "#ffffff" }
+            %>
+          </div>
+        </td>
+      </tr>
     </table>
   </div>
 

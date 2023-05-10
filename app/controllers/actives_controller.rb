@@ -28,8 +28,8 @@ class ActivesController < ApplicationController
       user_cluster = @active.guess_claster
     end
 
-    visual_cluster = visual_cluster_data(start, finish, number_bots)
-    visual_maze = visual_out_maze(start, finish, number_bots)
+    visual_cluster = visual_cluster_data(number_bots, start, finish)
+    visual_maze = visual_out_maze(number_bots, start, finish)
 
     @cluster_circle = visual_cluster.dig(:visual_result_circle)
     @cluster_square = visual_cluster.dig(:visual_result_square)
@@ -70,7 +70,6 @@ class ActivesController < ApplicationController
       @observation_maze_out_first << time_bots_maze_out(number_exit_bots.dig(number_bots)[i]).dig(:result_mas)[0]
     }
 =end
-
   end
 
   # GET /actives/1 or /actives/1.json
