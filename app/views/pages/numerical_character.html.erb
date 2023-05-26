@@ -102,23 +102,26 @@
           <div class="chart-box">
             <%= line_chart [
                              {
-                               name: "Система з 5-ох ботів", data: @chart_error_all_system_clast[0]
+                               name: "Система з 5-ох ботів", data: @chart_error_all_system_clast.dig(:result_mas)[0]
                              },
                              {
-                               name: "Система з 7-ох ботів", data: @chart_error_all_system_clast[1]
+                               name: "Система з 7-ох ботів", data: @chart_error_all_system_clast.dig(:result_mas)[1]
                              },
                              {
-                               name: "Система з 9-ох ботів", data: @chart_error_all_system_clast[2]
+                               name: "Система з 9-ох ботів", data: @chart_error_all_system_clast.dig(:result_mas)[2]
                              },
                              {
-                               name: "Система з 12-ох ботів", data: @chart_error_all_system_clast[3]
+                               name: "Система з 12-ох ботів", data: @chart_error_all_system_clast.dig(:result_mas)[3]
                              },
                              {
-                               name: "Система з 15-ох ботів", data: @chart_error_all_system_clast[4]
+                               name: "Система з 15-ох ботів", data: @chart_error_all_system_clast.dig(:result_mas)[4]
+                             },
+                             {
+                               name: "Графік середніх значень", data: @chart_error_all_system_clast.dig(:connect)
                              }
                            ],
                            title: "Графік з полосою похибки для серелнього відсотку кластеризації систем",
-                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           colors: ['blue', 'green', 'orange', 'red', 'purple', 'black'],
                            xtitle: "Боти",
                            ytitle: "Час виходу",
                            library: { hAxis: { textPosition: 'none' } },
@@ -248,10 +251,13 @@
                              },
                              {
                                name: "Система з 15-ох ботів", data: @chart_error_all_system_first.dig(:fifteen_bots)
+                             },
+                             {
+                               name: "Графік середніх значень", data: @chart_error_all_system_first.dig(:connect)
                              }
                            ],
                            title: "Графік з полосою похибки для часу виходу першого боту з лабіринту",
-                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           colors: ['blue', 'green', 'orange', 'red', 'purple', 'black'],
                            xtitle: "Боти",
                            ytitle: "Час виходу",
                            download: { background: "#ffffff" }
@@ -262,12 +268,12 @@
 
       <tr>
         <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
-          середньої кількості ботів, що вийшли
+          середньої кількості ботів, що вийшли з лабіринту
         </th>
       </tr>
 
       <tr>
-        <td><b>Середній відсоток кількість ботів, що вийшли</b></td>
+        <td><b>Середній відсоток кількість ботів, що вийшли з лабіринту</b></td>
         <td style="background: rgba(91, 157, 231, 0.5); font-family: 'Times New Roman',serif; font-size: 25px;"><%= @result_all_obs_count[0] %>
           %
         </td>
@@ -280,7 +286,7 @@
       </tr>
 
       <tr>
-        <td><b>Середнє значення відсотку ботів, що вийшли</b></td>
+        <td><b>Середнє значення відсотку ботів, що вийшли з лабіринту</b></td>
         <td colspan="3" style="background: #F5F5F5; font-family: 'Times New Roman',serif; font-size: 25px;"><%= @average_result_observ_count %>
           %
         </td>
@@ -326,10 +332,13 @@
                              },
                              {
                                name: "Система з 15-ох ботів", data: @chart_error_all_system_count.dig(:fifteen_bots)
+                             },
+                             {
+                               name: "Графік середніх значень", data: @chart_error_all_system_count.dig(:connect)
                              }
                            ],
                            title: "Графік з полосою похибки для середньої кількості ботів, що вийшли з лабіринту",
-                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           colors: ['blue', 'green', 'orange', 'red', 'purple', 'black'],
                            xtitle: "Боти",
                            ytitle: "Час виходу",
                            download: { background: "#ffffff" }
@@ -404,10 +413,13 @@
                              },
                              {
                                name: "Система з 15-ох ботів", data: @chart_error_all_system_exit.dig(:fifteen_bots)
+                             },
+                             {
+                               name: "Графік середніх значень", data: @chart_error_all_system_exit.dig(:connect)
                              }
                            ],
                            title: "Графік з полосою похибки для середнього часу виходу ботів з лабіринту",
-                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           colors: ['blue', 'green', 'orange', 'red', 'purple', 'black'],
                            xtitle: "Боти",
                            ytitle: "Час виходу",
                            download: { background: "#ffffff" }
@@ -418,7 +430,7 @@
 
       <tr>
         <th colspan="4" style="text-align: center; padding: 40px; font-family: 'Times New Roman',serif; font-size: 27px;">Результати
-          середнього часу перебування в лабіринті
+          середнього часу перебування ботів в лабіринті
         </th>
       </tr>
 
@@ -482,10 +494,13 @@
                              },
                              {
                                name: "Система з 15-ох ботів", data: @chart_error_all_system_stay.dig(:fifteen_bots)
+                             },
+                             {
+                               name: "Графік середніх значень", data: @chart_error_all_system_stay.dig(:connect)
                              }
                            ],
                            title: "Графік з полосою похибки для середнього часу перебування ботів у лабіринті",
-                           colors: ['blue', 'green', 'orange', 'red', 'purple'],
+                           colors: ['blue', 'green', 'orange', 'red', 'purple', 'black'],
                            xtitle: "Боти",
                            ytitle: "Час виходу",
                            download: { background: "#ffffff" }

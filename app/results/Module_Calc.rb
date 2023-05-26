@@ -269,7 +269,7 @@ module CalculationModule
     # Обчислення відсотоку ботів, які вийшли з лабіринту
     # для кожного спостереження
     (0..mas.length - 1).each do |i|
-      result << ((mas[i][finish - 1]) * 100) / number_bots
+      result << (((mas[i][finish - 1]) * 100).to_f / number_bots.to_f).round(5)
     end
 
     # Підрахування середнього значення

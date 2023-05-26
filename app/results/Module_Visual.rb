@@ -11,8 +11,7 @@ module VisualizationModule
     cluster_circle = active_cluster_circle
     cluster_square = active_cluster_square
     cluster_triangle = active_cluster_triangle
-    cluster_maze = active_cluster_maze
-    #separated_bots = active_separated(number_bots)
+    #cluster_maze = active_cluster_maze
     step = 1
     result_circle = []
     result_square = []
@@ -28,17 +27,17 @@ module VisualizationModule
       mas_for_clust_circle << cluster_circle.dig(number_bots)[i - 1]
       mas_for_clust_square << cluster_square.dig(number_bots)[i - 1]
       mas_for_clust_triangle << cluster_triangle.dig(number_bots)[i - 1]
-      mas_for_clust_maze << clasterization_maze(number_bots)[i - 1].round(4)
+      mas_for_clust_maze << clasterization_maze(number_bots)[i - 1].round(5)
 
       result_circle << ["#{i - step} - #{i}", cluster_circle.dig(number_bots)[i - 1]]
       result_square << ["#{i - step} - #{i}", cluster_square.dig(number_bots)[i - 1]]
       result_triangle << ["#{i - step} - #{i}", cluster_triangle.dig(number_bots)[i - 1]]
-      result_maze << ["#{i - step} - #{i}", clasterization_maze(number_bots)[i - 1].round(4)]
+      result_maze << ["#{i - step} - #{i}", clasterization_maze(number_bots)[i - 1].round(5)]
     end
-    circle = calculation_clasterization(number_bots, mas_for_clust_circle)
-    square = calculation_clasterization(number_bots, mas_for_clust_square)
-    triangle = calculation_clasterization(number_bots, mas_for_clust_triangle)
-    maze = calculation_clasterization(number_bots, mas_for_clust_maze)
+    circle = calculation_clasterization(number_bots, mas_for_clust_circle).round(5)
+    square = calculation_clasterization(number_bots, mas_for_clust_square).round(5)
+    triangle = calculation_clasterization(number_bots, mas_for_clust_triangle).round(5)
+    maze = calculation_clasterization(number_bots, mas_for_clust_maze).round(5)
 
     average = (circle + square + triangle + maze) / 4.0
 
@@ -108,6 +107,7 @@ module VisualizationModule
 
   def chart_error(start, finish, function)
     bots_variations = [5, 7, 9, 12, 15]
+    tmp = []
     result = bots_variations.each_with_object(Hash.new { |h, k| h[k] = [] }) do |bots, hash|
       if function == "exit"
         temp = res_observation_deviation_mean(bots, start, finish, "exit")
@@ -122,6 +122,7 @@ module VisualizationModule
       hash[bots] << [bots, (avg_obs + msd / 2).round(5)]
       hash[bots] << [bots, avg_obs.round(5)]
       hash[bots] << [bots, (avg_obs - msd / 2).round(5)]
+      tmp << [bots, avg_obs.round(5)]
     end
 
     result.transform_keys! do |bots|
@@ -135,6 +136,16 @@ module VisualizationModule
         nil
       end
     end
+
+    result.define_singleton_method(:dig) do |*args|
+      if args == [:connect]
+        tmp
+      else
+        super(*args)
+      end
+    end
+
+    result
   end
 
   # візуалізація для кластеризації (графік з полосою похибки)
@@ -198,14 +209,25 @@ module VisualizationModule
   def chart_error_clast(start, finish)
     bots_variations = [5, 7, 9, 12, 15]
     result = []
+    connect = []
 
+    # Перебирається кожна варіація кількості ботів у системі
     bots_variations.each do |bots|
       temp = visual_cluster_data(bots, start, finish)
+      # Отримуються дані середнього результату кластеризації для системної варіації
+      # та середнього квадратичного відхилення
       avg_obs, msd = temp.values_at(:average_result_observations, :mean_square_deviation)
+      # Наповнення результуючого масиву
+      # Значення похибки = плюс/мінус половина середнього квадратичного відхилення
       content = [[bots, (avg_obs + msd / 2).round(5)], [bots, avg_obs.round(5)], [bots, (avg_obs - msd / 2).round(5)]]
+      connect << content[1]
       result.push(content)
     end
 
-    result
+    # Отримується результат
+    {
+      :result_mas => result,
+      :connect => connect
+    }
   end
 end

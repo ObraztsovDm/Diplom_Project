@@ -34,10 +34,10 @@ class PagesController < ApplicationController
       calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_maze))) / 4.0
 =end
 
-    @real_cluster_circle = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_circle)).round(3)
-    @real_cluster_square = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_square)).round(3)
-    @real_cluster_triangle = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_triangle)).round(3)
-    @real_cluster_maze = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_maze)).round(3)
+    @real_cluster_circle = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_circle)).round(5)
+    @real_cluster_square = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_square)).round(5)
+    @real_cluster_triangle = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_triangle)).round(5)
+    @real_cluster_maze = calculation_clasterization(number_bots, visual_cluster.dig(:area_cluster_maze)).round(5)
     @real_cluster_middle = visual_cluster.dig(:average_result_observations)
 
     # Час виходу ботів + середнє квадратичне відхилення
